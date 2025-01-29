@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "W:\\Corsi\\Github\\TechRetail_B\\TechRetail_B.csproj": {}
+    "W:\\Corsi\\Github\\Tech_Retail_B\\TechRetail_B\\TechRetail_B.csproj": {}
   },
   "projects": {
-    "W:\\Corsi\\Github\\TechRetail_B\\TechRetail_B.csproj": {
+    "W:\\Corsi\\Github\\Tech_Retail_B\\TechRetail_B\\TechRetail_B.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "W:\\Corsi\\Github\\TechRetail_B\\TechRetail_B.csproj",
+        "projectUniqueName": "W:\\Corsi\\Github\\Tech_Retail_B\\TechRetail_B\\TechRetail_B.csproj",
         "projectName": "TechRetail_B",
-        "projectPath": "W:\\Corsi\\Github\\TechRetail_B\\TechRetail_B.csproj",
+        "projectPath": "W:\\Corsi\\Github\\Tech_Retail_B\\TechRetail_B\\TechRetail_B.csproj",
         "packagesPath": "C:\\Users\\June 24th\\.nuget\\packages\\",
-        "outputPath": "W:\\Corsi\\Github\\TechRetail_B\\obj\\",
+        "outputPath": "W:\\Corsi\\Github\\Tech_Retail_B\\TechRetail_B\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -49,6 +49,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "MSSTU.DB.Utility": {
+              "target": "Package",
+              "version": "[2.1.6, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
