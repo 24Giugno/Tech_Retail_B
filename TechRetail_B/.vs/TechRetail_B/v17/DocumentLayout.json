@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "W:\\Corsi\\Github\\Tech_Retail_B\\TechRetail_B\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FCC2F92F-468B-4108-BDA9-096E6A5FB9E7}|TechRetail_B.csproj|w:\\corsi\\github\\tech_retail_b\\techretail_b\\models\\filiale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FCC2F92F-468B-4108-BDA9-096E6A5FB9E7}|TechRetail_B.csproj|solutionrelative:models\\filiale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FCC2F92F-468B-4108-BDA9-096E6A5FB9E7}|TechRetail_B.csproj|w:\\corsi\\github\\tech_retail_b\\techretail_b\\models\\feedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCC2F92F-468B-4108-BDA9-096E6A5FB9E7}|TechRetail_B.csproj|solutionrelative:models\\feedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FCC2F92F-468B-4108-BDA9-096E6A5FB9E7}|TechRetail_B.csproj|w:\\corsi\\github\\tech_retail_b\\techretail_b\\models\\utente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -13,6 +13,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{FCC2F92F-468B-4108-BDA9-096E6A5FB9E7}|TechRetail_B.csproj|w:\\corsi\\github\\tech_retail_b\\techretail_b\\models\\prodotto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FCC2F92F-468B-4108-BDA9-096E6A5FB9E7}|TechRetail_B.csproj|solutionrelative:models\\prodotto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCC2F92F-468B-4108-BDA9-096E6A5FB9E7}|TechRetail_B.csproj|w:\\corsi\\github\\tech_retail_b\\techretail_b\\models\\filiale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCC2F92F-468B-4108-BDA9-096E6A5FB9E7}|TechRetail_B.csproj|solutionrelative:models\\filiale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FCC2F92F-468B-4108-BDA9-096E6A5FB9E7}|TechRetail_B.csproj|w:\\corsi\\github\\tech_retail_b\\techretail_b\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -26,8 +30,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Feedback.cs",
+              "DocumentMoniker": "W:\\Corsi\\Github\\Tech_Retail_B\\TechRetail_B\\Models\\Feedback.cs",
+              "RelativeDocumentMoniker": "Models\\Feedback.cs",
+              "ToolTip": "W:\\Corsi\\Github\\Tech_Retail_B\\TechRetail_B\\Models\\Feedback.cs",
+              "RelativeToolTip": "Models\\Feedback.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-29T15:39:46.981Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{c9c0ae26-aa77-11d2-b3f0-0000f87570ee}"
@@ -51,7 +68,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Filiale.cs",
               "DocumentMoniker": "W:\\Corsi\\Github\\Tech_Retail_B\\TechRetail_B\\Models\\Filiale.cs",
               "RelativeDocumentMoniker": "Models\\Filiale.cs",
@@ -77,7 +94,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "W:\\Corsi\\Github\\Tech_Retail_B\\TechRetail_B\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",

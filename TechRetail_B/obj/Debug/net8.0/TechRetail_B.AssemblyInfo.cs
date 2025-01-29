@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TechRetail_B")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7fd7bc922af452fd365a6fa0f9752689d7887464")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ddd4b890537ec3cf13b8729e9ed85a58890d45da")]
 [assembly: System.Reflection.AssemblyProductAttribute("TechRetail_B")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TechRetail_B")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
