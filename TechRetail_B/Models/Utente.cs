@@ -12,5 +12,6 @@ namespace TechRetail_B.Models
         public string Ruolo { get; set; }
         public Filiale _Filiale { get; set; }
 
+        public Utente() { }
     }
 }

@@ -9,8 +9,7 @@ namespace TechRetail_B.Models
         public Ordine _Ordine { get; set; }
         public Utente _Utente { get; set; }
 
-        Feedback() { }
+        public Feedback() { }
 
-       
     }
 }
