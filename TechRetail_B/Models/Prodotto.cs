@@ -8,5 +8,6 @@ namespace TechRetail_B.Models
         public string Descrizione { get; set; }
         public string Image { get; set; }
 
+
     }
 }
