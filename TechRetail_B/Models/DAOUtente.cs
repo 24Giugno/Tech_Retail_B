@@ -47,20 +47,18 @@ namespace TechRetail_B.Models
         {
             var parametri = new Dictionary<string, object>
            {
-               {"@Nome",((Medico)entity).Nome.Replace("'", "''")},
-               {"@Cognome",((Medico)entity).Cognome.Replace("'", "''")},
-               {"@Dob",((Medico)entity).Dob},
-               {"@Residenza",((Medico)entity).Residenza.Replace("'", "''")},
-               {"@Reparto",((Medico)entity).Reparto.Replace("'", "''")},
-               {"@Primario",((Medico)entity).Primario},
-               {"@PazientiGuariti",((Medico)entity).PazientiGuariti},
-               {"@TotaleDecessi",((Medico)entity).TotaleDecessi},
-               {"@OspedaleId",((Medico)entity)._ospedale.Id},
+               {"@Nome",((Utente)entity).Nome.Replace("'", "''")},
+               {"@Cognome",((Utente)entity).Cognome.Replace("'", "''")},
+               {"@Mail",((Utente)entity).Mail.Replace("'", "''")},
+               {"@Passw",((Utente)entity).Passw.Replace("'", "''")},
+               {"@Ruolo",((Utente)entity).Ruolo.Replace("'", "''")},
+               {"@IdFilialeFK",((Utente)entity)._Filiale.Id},
            };
-            const string query = "INSERT INTO Medici (Nome,Cognome,Dob,Residenza,Reparto,Primario,PazientiGuariti,TotaleDecessi,ospedale_id) " +
-                                 "VALUES (@Nome,@Cognome,@Dob,@Residenza,@Reparto,@Primario,@PazientiGuariti,@TotaleDecessi,@OspedaleId)";
+            const string query = "INSERT INTO utenti (Nome,Cognome,Mail,Passw,Ruolo,IdFilialeFk) " +
+                                 "VALUES " +
+                                 "(@Nome,@Cognome,@Mail,@Passw,@Ruolo,@IdFilialeFK)";
 
-            return _db.UpdateDb(query, parametri);
+            return db.UpdateDb(query, parametri);
         }
     }
 
