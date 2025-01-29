@@ -4,9 +4,12 @@ namespace TechRetail_B.Models
     public class Filiale : Entity
 
     {
-        public string Indirizzo { get; set; }
-        public string Contatti { get; set; }
         public bool Magazzino { get; set; }
-        public bool Ritiro { get; set; }
+        public string Indirizzo { get; set; }
+        public string Email { get; set; }
+        public string Telefono { get; set; }
+        public bool DisponibileAlRitiro { get; set; }
+
+        public Filiale() { }
     }
 }

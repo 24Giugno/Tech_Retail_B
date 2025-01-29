@@ -5,7 +5,7 @@ CREATE DATABASE TechRetail_B;
 USE TechRetail_B;
 
 
-CREATE TABLE prodotto (
+CREATE TABLE prodotti (
     id_prodotto INT PRIMARY KEY IDENTITY,
     nome NVARCHAR(200) NOT NULL,
     descrizione NVARCHAR(500),
@@ -33,7 +33,7 @@ CREATE TABLE stocks (
 
 
 
-CREATE TABLE utente (
+CREATE TABLE utenti (
     id_utente INT PRIMARY KEY IDENTITY,
     nome NVARCHAR(100) NOT NULL,
     cognome NVARCHAR(100) NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE utente (
     FOREIGN KEY (idFilialeFK) REFERENCES filiali(id_filiale)
 );
 
-CREATE TABLE ordine (
+CREATE TABLE ordini (
     id_ordine INT PRIMARY KEY IDENTITY,
     data DATE default getdate(),
     quantita INT NOT NULL CHECK (quantita > 0),
