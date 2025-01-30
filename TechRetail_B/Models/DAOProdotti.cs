@@ -8,7 +8,7 @@ namespace TechRetail_B.Models
         IDatabase db;
         DAOProdotti()
         {
-            db = new Database("TechRetail_B");
+            db = new Database("TechRetail_B", "DESKTOP-L1JR8LA");
         }
 
         static DAOProdotti instance = null;
@@ -33,7 +33,7 @@ namespace TechRetail_B.Models
 
                 foreach (var riga in righe)
                 {
-                    Entity e = new Utente();
+                    Entity e = new Prodotto();
                     e.TypeSort(riga);
                     ris.Add(e);
                 }
@@ -50,7 +50,7 @@ namespace TechRetail_B.Models
                {"@Descrizione",((Prodotto)entity).Descrizione.Replace("'", "''")},
                {"@ImmagineURL",((Prodotto)entity).ImmagineURL.Replace("'", "''")}
            };
-            const string query = "INSERT INTO utenti (Nome,Descrizione,ImmagineURL) " +
+            const string query = "INSERT INTO prodotti (Nome,Descrizione,ImmagineURL) " +
                                  "VALUES " +
                                  "(@Nome,@Descrizione,@ImmagineURL)";
 
@@ -81,7 +81,7 @@ namespace TechRetail_B.Models
             {
                 {"@Id", recordId }
             };
-            return db.UpdateDb($"DELETE FROM Prodotti WHERE id_prodotto = @Id;");
+            return db.UpdateDb($"DELETE FROM Prodotti WHERE id = @Id;", parametro);
         }
 
         public Entity? FindRecord(int recordId)
@@ -91,10 +91,10 @@ namespace TechRetail_B.Models
                 {"@Id", recordId }
             };
 
-            var riga = db.ReadOneDb($"SELECT * FROM Prodotti WHERE id_prodotto= @Id");
+            var riga = db.ReadOneDb($"SELECT * FROM Prodotti WHERE id = @Id", parametro);
             if (riga != null)
             {
-                Entity e = new Utente();
+                Entity e = new Prodotto();
                 e.TypeSort(riga);
 
                 return e;
