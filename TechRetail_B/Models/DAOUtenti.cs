@@ -8,7 +8,7 @@ namespace TechRetail_B.Models
         IDatabase db;
         DAOUtenti()
         {
-            db = new Database("TechRetail_B", "DESKTOP-L1JR8LA");
+            db = new Database("TechRetail_B");
         }
 
         static DAOUtenti instance = null;
@@ -45,7 +45,7 @@ namespace TechRetail_B.Models
                 }
                 if (r.ContainsKey("ruolo") && r["ruolo"] == "staff"|| r["ruolo"]=="admin")
                 {
-                    int.TryParse(r["idfilialefk"], out int id);
+                    int.TryParse(r["idFilialeFK"], out int id);
                     Entity f = DAOFiliali.GetInstance().FindRecord(id);
                     u._Filiale = (Filiale)f;
                 }
@@ -101,7 +101,7 @@ namespace TechRetail_B.Models
             {
                 {"@Id", recordId }
             };
-            return db.UpdateDb($"DELETE FROM Utenti WHERE id = @Id;",parametro);
+            return db.UpdateDb($"DELETE FROM Utenti WHERE id_utente = @Id;");
         }
 
         public Entity? FindRecord(int recordId)
@@ -111,7 +111,7 @@ namespace TechRetail_B.Models
                 {"@Id", recordId }
             };
 
-            var riga = db.ReadOneDb($"SELECT * FROM Utenti WHERE id = @Id",parametro);
+            var riga = db.ReadOneDb($"SELECT * FROM Utenti WHERE id_utente= @Id");
             if (riga != null)
             {
                 Entity e = new Utente();
