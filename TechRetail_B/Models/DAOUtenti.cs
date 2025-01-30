@@ -67,7 +67,7 @@ namespace TechRetail_B.Models
            };
             const string query = "INSERT INTO utenti (Nome,Cognome,Mail,Passw,Ruolo,IdFilialeFk) " +
                                  "VALUES " +
-                                 "(@Nome,@Cognome,@Mail,@Passw,@Ruolo,@IdFilialeFK)";
+                                 "(@Nome,@Cognome,@Mail,HASHBYTES('SHA2_512',@Passw),@Ruolo,@IdFilialeFK)";
 
             return db.UpdateDb(query, parametri);
         }
