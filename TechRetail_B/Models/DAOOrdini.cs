@@ -9,7 +9,7 @@ public class DAOOrdini : IDAO
     IDatabase db;
     DAOOrdini()
     {
-        db = new Database("TechRetail_B");
+        db = new Database("TechRetail_B", "DESKTOP-L1JR8LA");
     }
 
     static DAOOrdini instance = null;
@@ -86,22 +86,22 @@ public class DAOOrdini : IDAO
             Ordine f = new Ordine();
             f.TypeSort(r);
 
-            if (r.ContainsKey("idUtenteFK") && int.TryParse(r["idProdottoFK"], out int UtenteId))
+            if (r.ContainsKey("idutentefk") && int.TryParse(r["idprodottofk"], out int UtenteId))
             {
                 Entity Utente = DAOUtenti.GetInstance().FindRecord(UtenteId);
                 f._Utente = (Utente)Utente;
             }
-            if (r.ContainsKey("idProdottoFK") && int.TryParse(r["idProdottoFK"], out int ProdottoId))
+            if (r.ContainsKey("idprodottofk") && int.TryParse(r["idprodottofk"], out int ProdottoId))
             {
                 Entity Prodotto = DAOProdotti.GetInstance().FindRecord(ProdottoId);
                 f._Prodotto = (Prodotto)Prodotto;
             }
-            if (r.ContainsKey("idFilialePartenzaFK") && int.TryParse(r["idFilialePartenzaFK"], out int FilialePartenzaId))
+            if (r.ContainsKey("idfilialepartenzafk") && int.TryParse(r["idfilialepartenzafk"], out int FilialePartenzaId))
             {
                 Entity FilialePartenza = DAOFiliali.GetInstance().FindRecord(FilialePartenzaId);
                 f._FilialePartenza = (Filiale)FilialePartenza;
             }
-            if (r.ContainsKey("idFilialeArrivoFK") && int.TryParse(r["idFilialeArrivoFK"], out int FilialeArrivoId))
+            if (r.ContainsKey("idfilialearrivofk") && int.TryParse(r["idfilialearrivofk"], out int FilialeArrivoId))
             {
                 Entity FilialeArrivo = DAOFiliali.GetInstance().FindRecord(FilialeArrivoId);
                 f._FilialeArrivo = (Filiale)FilialeArrivo;
