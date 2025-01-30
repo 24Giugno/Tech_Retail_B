@@ -8,7 +8,7 @@ namespace TechRetail_B.Models
         IDatabase db;
         DAOFiliali()
         {
-            db = new Database("TechRetail_B");
+            db = new Database("TechRetail_B", "DESKTOP-L1JR8LA");
         }
 
         static DAOFiliali instance = null;
@@ -50,9 +50,9 @@ namespace TechRetail_B.Models
                {"@Indirizzo",((Filiale)entity).Indirizzo.Replace("'", "''")},
                {"@Email",((Filiale)entity).Email.Replace("'", "''")},
                {"@Telefono",((Filiale)entity).Telefono.Replace("'", "''")},
-               {"@DisponibileAlRitiro",((Filiale)entity).DisponibileAlRitiro.Replace("'", "''")}
+               {"@DisponibileAlRitiro",((Filiale)entity).DisponibileAlRitiro}
            };
-            const string query = "INSERT INTO utenti (Magazzino,Indirizzo,Email,Telefono,DisponibileAlRitiro) " +
+            const string query = "INSERT INTO filiali (Magazzino,Indirizzo,Email,Telefono,DisponibileAlRitiro) " +
                                  "VALUES " +
                                  "(@Magazzino,@Indirizzo,@Email,@Telefono,@DisponibileAlRitiro)";
 
@@ -69,7 +69,7 @@ namespace TechRetail_B.Models
                {"@Telefono",((Filiale)entity).Telefono.Replace("'", "''")},
                {"@DisponibileAlRitiro",((Filiale)entity).DisponibileAlRitiro}
            };
-            const string query = $"UPDATE Utenti SET " +
+            const string query = $"UPDATE filiali SET " +
                                 $"magazzino= @Magazzino, " +
                                 $"indirizzo= @Indirizzo, " +
                                 $"email= @Email, " +
@@ -86,7 +86,7 @@ namespace TechRetail_B.Models
             {
                 {"@Id", recordId }
             };
-            return db.UpdateDb($"DELETE FROM Filiali WHERE id_Filiale = @Id;");
+            return db.UpdateDb($"DELETE FROM Filiali WHERE id = @Id;",parametro);
         }
 
         public Entity? FindRecord(int recordId)
@@ -96,7 +96,7 @@ namespace TechRetail_B.Models
                 {"@Id", recordId }
             };
 
-            var riga = db.ReadOneDb($"SELECT * FROM Filiali WHERE id_Filiale= @Id");
+            var riga = db.ReadOneDb($"SELECT * FROM Filiali WHERE id = @Id",parametro);
             if (riga != null)
             {
                 Entity e = new Filiale();

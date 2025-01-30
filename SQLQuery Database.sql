@@ -6,7 +6,7 @@ USE TechRetail_B;
 
 
 CREATE TABLE prodotti (
-    id_prodotto INT PRIMARY KEY IDENTITY,
+    id INT PRIMARY KEY IDENTITY,
     nome NVARCHAR(200) NOT NULL,
     descrizione NVARCHAR(500),
     immagineURL NVARCHAR(500)
@@ -14,7 +14,7 @@ CREATE TABLE prodotti (
 
 
 CREATE TABLE filiali (
-    id_filiale INT PRIMARY KEY IDENTITY,
+    id INT PRIMARY KEY IDENTITY,
     magazzino BIT NOT NULL,
     indirizzo NVARCHAR(255) NOT NULL,
     email NVARCHAR(255) NOT NULL,
@@ -23,7 +23,7 @@ CREATE TABLE filiali (
 );
 
 CREATE TABLE stocks (
-    id_stock INT PRIMARY KEY IDENTITY,
+    id INT PRIMARY KEY IDENTITY,
     idProdottoFK INT NOT NULL,
     idFilialeFK INT NOT NULL,
     quantita INT NOT NULL CHECK (quantita >= 0),
@@ -34,7 +34,7 @@ CREATE TABLE stocks (
 
 
 CREATE TABLE utenti (
-    id_utente INT PRIMARY KEY IDENTITY,
+    id INT PRIMARY KEY IDENTITY,
     nome NVARCHAR(100) NOT NULL,
     cognome NVARCHAR(100) NOT NULL,
     mail NVARCHAR(255) NOT NULL UNIQUE,
@@ -45,7 +45,7 @@ CREATE TABLE utenti (
 );
 
 CREATE TABLE ordini (
-    id_ordine INT PRIMARY KEY IDENTITY,
+    id INT PRIMARY KEY IDENTITY,
     data DATE default getdate(),
     quantita INT NOT NULL CHECK (quantita > 0),
     idUtenteFK INT NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE ordini (
 );
 
 CREATE TABLE feedbacks (
-    id_feedback INT PRIMARY KEY IDENTITY,
+    id INT PRIMARY KEY IDENTITY,
     stelle INT NOT NULL CHECK (stelle BETWEEN 1 AND 5),
     commento NVARCHAR(500),
     idOrdineFK INT NOT NULL,
