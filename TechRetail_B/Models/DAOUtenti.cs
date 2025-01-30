@@ -114,9 +114,15 @@ namespace TechRetail_B.Models
             var riga = db.ReadOneDb($"SELECT * FROM Utenti WHERE id = @Id",parametro);
             if (riga != null)
             {
-                Entity e = new Utente();
+                Utente e = new Utente();
                 e.TypeSort(riga);
-
+               
+                if (riga.ContainsKey("idfilialefk") && int.TryParse(riga["idfilialefk"], out int FilialeId))
+                {
+                    Entity f = DAOFiliali.GetInstance().FindRecord(FilialeId);
+                     e._Filiale= (Filiale)f;
+                }
+                
                 return e;
             }
             else
