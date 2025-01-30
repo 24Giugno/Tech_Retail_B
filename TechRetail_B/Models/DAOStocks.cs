@@ -82,12 +82,12 @@ namespace TechRetail_B.Models
                 Stocks f = new Stocks();
                 f.TypeSort(r);
 
-                if (r.ContainsKey("_Prodotto") && int.TryParse(r["_Prodotto"], out int ProdottoId))
+                if (r.ContainsKey("idProdottoFK") && int.TryParse(r["idProdottoFK"], out int ProdottoId))
                 {
                     Entity Prodotto = DAOProdotti.GetInstance().FindRecord(ProdottoId);
                     f._Prodotto = (Prodotto)Prodotto;
                 }
-                if (r.ContainsKey("_Filiale") && int.TryParse(r["_Filiale"], out int FilialeId))
+                if (r.ContainsKey("idFilialeFK") && int.TryParse(r["idFilialeFK"], out int FilialeId))
                 {
                     Entity Filiale = DAOFiliali.GetInstance().FindRecord(FilialeId);
                     f._Filiale = (Filiale)Filiale;
