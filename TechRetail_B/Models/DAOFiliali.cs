@@ -67,7 +67,7 @@ namespace TechRetail_B.Models
                {"@Indirizzo",((Filiale)entity).Indirizzo.Replace("'", "''")},
                {"@Email",((Filiale)entity).Email.Replace("'", "''")},
                {"@Telefono",((Filiale)entity).Telefono.Replace("'", "''")},
-               {"@DisponibileAlRitiro",((Filiale)entity).DisponibileAlRitiro.Replace("'", "''")}
+               {"@DisponibileAlRitiro",((Filiale)entity).DisponibileAlRitiro}
            };
             const string query = $"UPDATE Utenti SET " +
                                 $"magazzino= @Magazzino, " +
