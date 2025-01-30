@@ -2,6 +2,7 @@
 using MSSTU.DB.Utility;
 
 using System.Collections.Generic;
+using System.Globalization;
 
 public class DAOOrdini : IDAO
 {
@@ -26,7 +27,7 @@ public class DAOOrdini : IDAO
     {
         var parametri = new Dictionary<string, object>
            {
-               {"@Data",((Ordine)entity).Data},
+               {"@data", ((Ordine)entity).Data.ToString("yyyy-MM-dd")},
                {"@Quantita",((Ordine)entity).Quantita},
                {"@UtenteId",((Ordine)entity)._Utente.Id},
                {"@ProdottoId",((Ordine)entity)._Prodotto.Id},
@@ -36,7 +37,7 @@ public class DAOOrdini : IDAO
                {"@InLoco",((Ordine)entity).InLoco},
                {"@Restock",((Ordine)entity).Restock},
            };
-
+        
         const string query = "INSERT INTO Ordini (data,quantita,idUtenteFK,idProdottoFK,idFilialePartenzaFK,idFilialeArrivoFK,indirizzoConsegna,inLoco,restock) " +
                              "VALUES (@Data,@Quantita,@UtenteId,@ProdottoId,@FilialePartenzaId,@FilialeArrivoId,@IndirizzoConsegna,@InLoco,@Restock)";
 

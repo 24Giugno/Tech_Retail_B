@@ -9,22 +9,58 @@
 <body>
     @foreach(var p in @Model)
     {
-        var u = p as Utente;
+        var u = p as Ordine;
+        <h2>Dettagli ordine</h2>
+        <p>@u.Data</p>
+        <p>@u.Quantita</p>
+        <p>@u.IndirizzoConsegna</p>
+        <p>@u.InLoco</p>
+        <p>@u.Restock</p>
+
+
+        <h2>Utente</h2>
+        <p>@u._Utente.Nome</p>
+        <p>@u._Utente.Cognome</p>
+        <p>@u._Utente.Ruolo</p>
+        <p>@u._Utente.Mail</p>
+        <p>@u._Utente.Passw</p>
+
+        <h2>Filiale utente</h2>
+        <p>@(u._Utente._Filiale.Magazzino? "si":"no")</p>
+        <p>@u._Utente._Filiale.Indirizzo</p>
+        <p>@u._Utente._Filiale.Email</p>
+        <p>@u._Utente._Filiale.Telefono</p>
+        <p>@(u._Utente._Filiale.DisponibileAlRitiro? "si":"no")</p>
+
+        <h2>prodotto</h2>
+        <p>@u._Prodotto.Id </p>
+        <p>@u._Prodotto.Nome</p>
+        <p>@u._Prodotto.Descrizione</p>
+        <img src="@u._Prodotto.ImmagineURL" />
+
+        <h2>FilialePartenza</h2>
+        <p> @(u._FilialePartenza.Magazzino? "si" : "no") </p>
+        <p>@u._FilialePartenza.Indirizzo</p>
+        <p>@u._FilialePartenza.Email</p>
+        <p>@u._FilialePartenza.Telefono</p>
+        <p> @(u._FilialePartenza.DisponibileAlRitiro? "si" : "no") </p>
+
+        <h2>Filiale Arrivo</h2>
+        <p> @(u._FilialeArrivo.Magazzino ? "si" : "no") </p>
+        <p>@u._FilialeArrivo.Indirizzo</p>
+        <p>@u._FilialeArrivo.Email</p>
+        <p>@u._FilialeArrivo.Telefono</p>
+        <p> @(u._FilialeArrivo.DisponibileAlRitiro ? "si" : "no") </p>
+
+
+    }
+        @* var u = p as Utente;
         <p>@u.Nome</p>
         <p>@u.Cognome</p>
         <p>@u.Mail</p>
         <p>@u.Passw</p>
         <p>@u.Ruolo</p>
-        <p>@u._Filiale.Id</p>
-
-            
-        <p> @(u._Filiale.Magazzino? "si" : "no") </p>
-        <p>@u._Filiale.Indirizzo</p>
-        <p>@u._Filiale.Email</p>
-        <p>@u._Filiale.Telefono</p>
-        <p> @(u._Filiale.DisponibileAlRitiro? "si" : "no") </p>
-
-
+        <p>@u._Filiale.Id</p> *@
 
        @*  var f = p as Filiale;
         <p> @(f.Magazzino? "si" : "no") </p>
@@ -32,13 +68,12 @@
         <p>@f.Email</p>
         <p>@f.Telefono</p>
         <p> @(f.DisponibileAlRitiro ? "si" : "no") </p> *@
-    }
-    @* {
+    @* 
         var prodotto = p as Prodotto;
         <p>@prodotto.Id</p>
         <p>@prodotto.Nome</p>
         <p>@prodotto.Descrizione</p>
         <img src="@prodotto.ImmagineURL"/>
-    } *@
+     *@
 </body>
 </html>

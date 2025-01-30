@@ -32,7 +32,7 @@ namespace TechRetail_B.Models
                {"@Quantita",((Stocks)entity).Quantita},   
            };
 
-            const string query = "INSERT INTO stocks (idProdotto,idFiliale,quantita) " +
+            const string query = "INSERT INTO stocks (idProdottoFK,idFilialeFK,quantita) " +
                                  "VALUES (@ProdottoId,@FilialeId,@Quantita)";
 
             return db.UpdateDb(query, parametri);
