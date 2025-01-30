@@ -23,7 +23,7 @@ namespace TechRetail_B.Models
         #endregion
 
         #region CRUD
-        public List<Entity> GetRecords() //da sistemare FK
+        public List<Entity> GetRecords()  // modifica  come stocks
         {
             var righe = db.ReadDb($"SELECT * FROM utenti");
 

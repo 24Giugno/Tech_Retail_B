@@ -84,13 +84,13 @@ namespace TechRetail_B.Models
 
                 if (r.ContainsKey("_Prodotto") && int.TryParse(r["_Prodotto"], out int ProdottoId))
                 {
-                    Prodotto Prodotto = GetProdottoById(ProdottoId);
-                    f._Prodotto = Prodotto;
+                    Entity Prodotto = DAOProdotti.GetInstance().FindRecord(ProdottoId);
+                    f._Prodotto = (Prodotto)Prodotto;
                 }
                 if (r.ContainsKey("_Filiale") && int.TryParse(r["_Filiale"], out int FilialeId))
                 {
-                    Filiale Filiale = GetFilialeById(FilialeId);
-                    f._Filiale = Filiale;
+                    Entity Filiale = DAOFiliali.GetInstance().FindRecord(FilialeId);
+                    f._Filiale = (Filiale)Filiale;
                 }
 
                 entities.Add(f);
