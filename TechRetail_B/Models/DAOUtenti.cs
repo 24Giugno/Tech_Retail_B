@@ -23,23 +23,35 @@ namespace TechRetail_B.Models
         #endregion
 
         #region CRUD
-        public List<Entity> GetRecords()  // modifica  come stocks
+        public List<Entity> GetRecords()
         {
-            var righe = db.ReadDb($"SELECT * FROM utenti");
+            const string query= $"SELECT * FROM utenti";
 
-            if (righe != null)
+            List<Entity> entities = [];
+            var ris = db.ReadDb(query);
+            if (ris == null)
+                return entities;
+
+            foreach (var r in ris)
             {
-                List<Entity> ris = new();
+                Utente u = new Utente();
+                u.TypeSort(r);
 
-                foreach (var riga in righe)
+                if (r.ContainsKey("ruolo") && r["ruolo"]=="cliente")
                 {
-                    Entity e = new Utente();
-                    e.TypeSort(riga);
-                    ris.Add(e);
+                    Entity f = new Filiale();
+                    f.Id = 0;
+                    u._Filiale = (Filiale)f;
                 }
-                return ris;
+                if (r.ContainsKey("ruolo") && r["ruolo"] == "staff"|| r["ruolo"]=="admin")
+                {
+                    int.TryParse(r["idFilialeFK"], out int id);
+                    Entity f = DAOFiliali.GetInstance().FindRecord(id);
+                    u._Filiale = (Filiale)f;
+                }
+                entities.Add(u);
             }
-            else return null;
+            return entities;
         }
 
         public bool CreateRecord(Entity entity)
