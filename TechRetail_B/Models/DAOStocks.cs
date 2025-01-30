@@ -8,7 +8,7 @@ namespace TechRetail_B.Models
         IDatabase db;
         DAOStocks()
         {
-            db = new Database("TechRetail_B");
+            db = new Database("TechRetail_B", "DESKTOP-L1JR8LA");
         }
 
         static DAOStocks instance = null;
@@ -82,12 +82,12 @@ namespace TechRetail_B.Models
                 Stocks f = new Stocks();
                 f.TypeSort(r);
 
-                if (r.ContainsKey("idProdottoFK") && int.TryParse(r["idProdottoFK"], out int ProdottoId))
+                if (r.ContainsKey("idprodottofk") && int.TryParse(r["idprodottofk"], out int ProdottoId))
                 {
                     Entity Prodotto = DAOProdotti.GetInstance().FindRecord(ProdottoId);
                     f._Prodotto = (Prodotto)Prodotto;
                 }
-                if (r.ContainsKey("idFilialeFK") && int.TryParse(r["idFilialeFK"], out int FilialeId))
+                if (r.ContainsKey("idfilialefk") && int.TryParse(r["idfilialefk"], out int FilialeId))
                 {
                     Entity Filiale = DAOFiliali.GetInstance().FindRecord(FilialeId);
                     f._Filiale = (Filiale)Filiale;
