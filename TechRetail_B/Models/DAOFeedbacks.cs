@@ -33,7 +33,7 @@ namespace TechRetail_B.Models
                {"@idUtenteFK",((Feedback)entity)._Ordine.Id},
            };
 
-            const string query = "INSERT INTO stocks (Stelle,Commento,idOrdineFK,idUtenteFK) " +
+            const string query = "INSERT INTO Feedbacks (Stelle,Commento,idOrdineFK,idUtenteFK) " +
                                  "VALUES (@Stelle,@Commento,@idOrdineFK,@idUtenteFK)";
 
             return db.UpdateDb(query, parametri);
@@ -83,12 +83,12 @@ namespace TechRetail_B.Models
                 Feedback f = new Feedback();
                 f.TypeSort(r);
 
-                if (r.ContainsKey("idOrdineFK") && int.TryParse(r["idOrdineFK"], out int OrdineId))
+                if (r.ContainsKey("idordinefk") && int.TryParse(r["idordinefk"], out int OrdineId))
                 {
                     Entity Ordine = DAOProdotti.GetInstance().FindRecord(OrdineId);
                     f._Ordine = (Ordine)Ordine;
                 }
-                if (r.ContainsKey("idUtenteFK") && int.TryParse(r["idUtenteFK"], out int UtenteId))
+                if (r.ContainsKey("idutentefk") && int.TryParse(r["idutentefk"], out int UtenteId))
                 {
                     Entity Utente = DAOFiliali.GetInstance().FindRecord(UtenteId);
                     f._Utente = (Utente)Utente;
