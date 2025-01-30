@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Gestionale</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+        .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+        .fa-anchor,.fa-coffee {font-size:200px}
+        .menu {
+            width: 200px;
+            background-color: #3b3b3b; /* Colore di sfondo della navbar */
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            position: fixed;
+            right: 0;
+            top: 0;
+            height: 100%;
+        }
+        .menu a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #eb921c; /* Colore del testo dei link */
+            margin-bottom: 10px;
+        }
+        .menu a:hover {
+            background-color: #d48722; /* Colore di sfondo al passaggio del mouse */
+        }
+        .content {
+            margin-right: 220px; /* Spazio per la navbar */
+            padding: 20px;
+            background-color: #bd7d28; /* Colore di sfondo del contenuto */
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            background-color: #a6732e; /* Colore di sfondo della sezione nome e cognome */
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .stat {
+            background-color: #a6732e; /* Colore di sfondo delle statistiche */
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            width: 30%;
+            text-align: center;
+        }
+        .logout {
+            margin-top: auto;
+            margin-bottom: 30px;
+            padding: 10px;
+            background-color: rgb(175, 0, 0);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            
+
+        }
+        .logout:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="menu">
+    <a href="#">Dashboard</a>
+    <a href="#">Negozi</a>
+    <a href="#">Magazzino</a>
+    <a href="#">Comunicazioni</a>
+    
+
+<a href="#" class="logout">Log Out</a>
+</div>
+
+<!-- Header -->
+<header class="w3-container w3-red w3-center" style="padding:128px 16px">
+  <h1 class="w3-margin w3-jumbo">Benvenuto, Nome Cognome</h1>
+  <p class="w3-xlarge">Età: XX</p>
+</header>
+
+<!-- Main Content -->
+<div class="content">
+    <div class="stats">
+      <div class="stat">
+        <h2>Inventario</h2>
+        <p>Dettagli dell'inventario...</p>
+      </div>
+      <div class="stat">
+        <h2>Statistiche Negozio</h2>
+        <canvas id="pieChart" width="400" height="400"></canvas>
+      </div>
+      <div class="stat">
+        <h2>Ordini in Corso</h2>
+        <p>Numero di ordini in corso: XX</p>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <h2>Fatturato Giornaliero</h2>
+        <p>€XX.XX</p>
+      </div>
+      <div class="stat">
+        <h2>Feedback</h2>
+        <p>Dettagli dei feedback...</p>
+      </div>
+    </div>
+</div>
+
+
+
+<script>
+    var ctx = document.getElementById('pieChart').getContext('2d');
+    var pieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Ordini in loco', 'Ordini online'],
+            datasets: [{
+                label: 'Statistiche Ordini',
+                data: [60, 40], // Esempio di dati, puoi modificarli in base alle tue esigenze
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)'
+                ],
+                hoverOffset: 4
+            }]
+        }
+    });
+</script>
+
+</body>
+</html>

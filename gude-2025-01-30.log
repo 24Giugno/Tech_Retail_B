@@ -1,0 +1,26 @@
+10:29:59:303 [ALWAYS]	GUDE Logging Started
+10:29:59:304 [INFO]	SqliteResumeCache::SqliteResumeCache basedirectory is null/empty
+10:29:59:304 [ERROR]	SqliteResumeCache::CreateSqliteResumeCache creating resume cache pointer failure
+10:29:59:304 [ERROR]	Initialize resume cache pointer failure
+10:29:59:304 [INFO]	gude policy POLICY_USER limit (2,2,1) chunk 2097152, chunking (UL 0 DL 1), resXfer 1, adapt 0, NSURL 0, timeout 86400 
+10:29:59:304 [INFO]	Initialized -- gude-lib version: v0.12.1 app: gude
+10:30:14:526 [WARN]	Ignoring attempt to reinit logging to \gude at level 4 retaining 3 days of logs
+10:30:14:526 [INFO]	SqliteResumeCache::SqliteResumeCache basedirectory is null/empty
+10:30:14:526 [ERROR]	SqliteResumeCache::CreateSqliteResumeCache creating resume cache pointer failure
+10:30:14:526 [ERROR]	Initialize resume cache pointer failure
+10:30:14:526 [INFO]	gude policy POLICY_USER limit (4,4,1) chunk 2097152, chunking (UL 0 DL 1), resXfer 1, adapt 0, NSURL 1, timeout 86400 
+10:30:14:526 [INFO]	Initialized -- gude-lib version: v0.12.1 app: gude
+10:30:14:530 [WARN]	Request Failed. ErrorCode: 112029 errorMessage: Platform Status, Send Request Failed. WinHTTP Cannot Connect. last error code = 12029 
+11:26:21:055 [ALWAYS]	GUDE Logging Started
+11:26:21:055 [INFO]	SqliteResumeCache::SqliteResumeCache basedirectory is null/empty
+11:26:21:055 [ERROR]	SqliteResumeCache::CreateSqliteResumeCache creating resume cache pointer failure
+11:26:21:055 [ERROR]	Initialize resume cache pointer failure
+11:26:21:055 [INFO]	gude policy POLICY_USER limit (2,2,1) chunk 2097152, chunking (UL 0 DL 1), resXfer 1, adapt 0, NSURL 0, timeout 86400 
+11:26:21:055 [INFO]	Initialized -- gude-lib version: v0.12.1 app: gude
+11:26:31:482 [WARN]	Ignoring attempt to reinit logging to \gude at level 4 retaining 3 days of logs
+11:26:31:482 [INFO]	SqliteResumeCache::SqliteResumeCache basedirectory is null/empty
+11:26:31:482 [ERROR]	SqliteResumeCache::CreateSqliteResumeCache creating resume cache pointer failure
+11:26:31:482 [ERROR]	Initialize resume cache pointer failure
+11:26:31:482 [INFO]	gude policy POLICY_USER limit (4,4,1) chunk 2097152, chunking (UL 0 DL 1), resXfer 1, adapt 0, NSURL 1, timeout 86400 
+11:26:31:482 [INFO]	Initialized -- gude-lib version: v0.12.1 app: gude
+11:26:31:488 [WARN]	Request Failed. ErrorCode: 112029 errorMessage: Platform Status, Send Request Failed. WinHTTP Cannot Connect. last error code = 12029 
