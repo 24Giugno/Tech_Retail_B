@@ -12,7 +12,7 @@ public class DAOOrdini : IDAO
     IDatabase db;
     DAOOrdini()
     {
-        db = new Database("TechRetail_B", "DESKTOP-L1JR8LA");
+        db = new Database("TechRetail_B", "DESKTOP-0EJOTBJ");
     }
 
     static DAOOrdini instance = null;
@@ -200,6 +200,16 @@ public class DAOOrdini : IDAO
 
         var dizionario = query.ToDictionary(x => x.Data, x => x.Numero);
         return dizionario;
+    }
+
+    public List<Entity> OrdiniPerFiliale(Utente u)
+    {
+        List<Entity> lista = DAOOrdini.GetInstance().GetRecords();
+
+        IEnumerable<Entity> query = from Ordine o in lista
+                    where o._FilialePartenza.Id == u._Filiale.Id
+                    select o;
+        return query.ToList();
     }
 
     #endregion

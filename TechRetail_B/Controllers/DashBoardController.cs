@@ -21,5 +21,23 @@ namespace TechRetail_B.Controllers
                 };
                 return View(viewModel);
             }
-       } 
+
+            public IActionResult IndexLogin(Utente u)
+        {
+            Entity e = DAOUtenti.GetInstance().FindRecord(u.Id);
+            Utente i = (Utente)e;
+
+            List<Entity> listaOrdini = DAOOrdini.GetInstance().OrdiniPerFiliale(i);
+
+            var viewModel2 = new OrdiniViewModel
+            {
+                OrdiniInCorso = DAOOrdini.GetInstance().OrdiniInCorso(listaOrdini),
+                PercentualeLoco = DAOOrdini.GetInstance().CalcoloPercentualeLoco(listaOrdini),
+                FatturatoGiornaliero = DAOOrdini.GetInstance().FatturatoGiornaliero(listaOrdini),
+                GraficoLineaLoco = DAOOrdini.GetInstance().GraficoLineaLoco(listaOrdini),
+                GraficoLineaOnline = DAOOrdini.GetInstance().GraficoLineaOnline(listaOrdini)
+            };
+            return View("Index",viewModel2);
+        }
+    } 
 }

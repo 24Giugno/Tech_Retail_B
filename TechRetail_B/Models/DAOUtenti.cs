@@ -8,7 +8,6 @@ namespace TechRetail_B.Models
         IDatabase db;
         DAOUtenti()
         {
-            db = new Database("TechRetail_B", "DESKTOP-L1JR8LA");
         }
 
         static DAOUtenti instance = null;
@@ -129,6 +128,56 @@ namespace TechRetail_B.Models
                 return null;
         }
 
+        #endregion
+
+        #region Metodi
+        public bool Find(string mail, string passw)
+        {
+            //var riga = db.ReadDb($"SELECT * FROM Utenti WHERE Mail = '{mail}' AND passw = HASHBYTES('SHA2_512','{passw}');");
+            var parametri = new Dictionary<string, object>
+           {
+               {"@Mail", mail},
+               {"@Passw",passw},
+           };
+
+            var riga = db.ReadOneDb("SELECT * FROM Utenti WHERE Mail = @Mail AND passw = @Passw;",parametri);
+
+
+            if (riga != null)
+            {
+                Console.WriteLine("\tECCOMI");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("\tFALLIMENTO");
+                return false;
+            }
+        }
+
+        public Entity Find(string mail)
+        {
+            var parametri = new Dictionary<string, object>
+           {
+               {"@Mail",mail},
+           };
+            var riga = db.ReadOneDb("SELECT * FROM Utenti WHERE Mail = @Mail",parametri);
+
+            if (riga != null)
+            {
+                Utente e = new Utente();
+                e.TypeSort(riga);
+
+                if (riga.ContainsKey("idfilialefk") && int.TryParse(riga["idfilialefk"], out int FilialeId))
+                {
+                    Entity f = DAOFiliali.GetInstance().FindRecord(FilialeId);
+                    e._Filiale = (Filiale)f;
+                }
+                return e;
+            }
+            else
+                return null;
+        }
         #endregion
     }
 }
