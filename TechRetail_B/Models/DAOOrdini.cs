@@ -1,4 +1,6 @@
 ﻿namespace TechRetail_B.Models;
+
+using Microsoft.VisualBasic;
 using MSSTU.DB.Utility;
 
 using System.Collections.Generic;
@@ -23,6 +25,8 @@ public class DAOOrdini : IDAO
         return instance;
     }
     #endregion
+
+    #region CRUD
     public bool CreateRecord(Entity entity)
     {
         var parametri = new Dictionary<string, object>
@@ -132,6 +136,72 @@ public class DAOOrdini : IDAO
         const string query = "UPDATE stocks SET data = @Data, quantita = @Quantita, idUtenteFK = @UtenteId, idProdottoFK = @ProdottoId, @FilialePartenzaId = @FilialePartenzaId, idFilialeArrivoFK = @FilialeArrivoId, indirizzoConsegna = @IndirizzoConsegna, inLoco = @InLoco, restock = @Restock " +
                              "WHERE id = @Id ";
         return db.UpdateDb(query, parametri);
+
     }
+    #endregion
+
+    #region METODI
+    static double CalcoloPercentualeLoco(List<Entity> lista)
+    {
+        var numeroOrdini = lista.Count();
+        var ordiniLoco = from Ordine o in lista
+                         where o.InLoco == true
+                         select o;
+        var numeroOrdiniLoco = ordiniLoco.Count();
+
+        double ris = (numeroOrdini - numeroOrdiniLoco) / 100;
+
+        return ris;
+    }
+
+    static int OrdiniInCorso(List<Entity> lista)
+    {
+        var ordiniCorso = from Ordine o in lista
+                          where o.Stato != "consegnato"
+                          select o;
+        int ris = ordiniCorso.Count();
+        return ris;
+    }
+
+    static double FatturatoGiornaliero(List<Entity> listaOrdini)
+    {
+        double query = (from Ordine o in listaOrdini
+                    where o.Data.Date == DateTime.Today
+                    select o._Prodotto.Prezzo).Sum();
+
+        return query;
+    }
+
+    static Dictionary<DateTime,int> GraficoLineaLoco(List<Entity> listaOrdini)
+    {
+        var query = from Ordine o in listaOrdini
+                    where o.InLoco == true
+                    group o by o.Data.Date into g
+                    select new
+                    {
+                        Data = g.Key,
+                        Numero = g.Count()
+                    };
+
+        var dizionario = query.ToDictionary(x => x.Data, x => x.Numero);
+        return dizionario;
+    }
+
+    static Dictionary<DateTime, int> GraficoLineaOnline(List<Entity> listaOrdini)
+    {
+        var query = from Ordine o in listaOrdini
+                    where o.InLoco == false
+                    group o by o.Data.Date into g
+                    select new
+                    {
+                        Data = g.Key,
+                        Numero = g.Count()
+                    };
+
+        var dizionario = query.ToDictionary(x => x.Data, x => x.Numero);
+        return dizionario;
+    }
+
+    #endregion
 }
 

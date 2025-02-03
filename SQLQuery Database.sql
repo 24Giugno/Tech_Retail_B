@@ -54,6 +54,7 @@ CREATE TABLE ordini (
     indirizzoConsegna NVARCHAR(255),
     inLoco BIT NOT NULL,
     restock BIT NOT NULL,
+	stato VARCHAR(50) CHECK(stato IN ('elaborazione','consegna','consegnato')),
     FOREIGN KEY (idUtenteFK) REFERENCES utente(id_utente),
     FOREIGN KEY (idProdottoFK) REFERENCES prodotto(id_prodotto),
     FOREIGN KEY (idFilialePartenzaFK) REFERENCES filiali(id_filiale),

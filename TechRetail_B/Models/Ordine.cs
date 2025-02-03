@@ -11,6 +11,7 @@ namespace TechRetail_B.Models
         public Filiale _FilialePartenza { get; set; }
         public Filiale _FilialeArrivo { get; set; }
         public string IndirizzoConsegna { get; set; }
+        public string Stato { get; set; }
         public bool InLoco { get; set; }
         public bool Restock { get; set; }
 

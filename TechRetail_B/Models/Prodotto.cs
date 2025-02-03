@@ -6,7 +6,6 @@ namespace TechRetail_B.Models
     {
         public string Nome { get; set; }
         public string Descrizione { get; set; }
-
         public float Prezzo { get; set; }
         public string ImmagineURL { get; set; }
 
