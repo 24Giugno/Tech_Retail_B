@@ -21,5 +21,5 @@ app.UseRouting();
 app.UseAuthorization();
 
 //app.MapRazorPages();
-app.MapControllerRoute(name: "default", pattern: "{controller=Test}/{action=Index}/{id?}");
+app.MapControllerRoute(name: "default", pattern: "{controller=DashBoard}/{action=Index}/{id?}");
 app.Run();
