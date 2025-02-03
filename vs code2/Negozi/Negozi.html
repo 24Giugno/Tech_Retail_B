@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Negozi</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato|Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="Stylesheet" href="/Negozi/Negozi.css">
+</head>
+<body>
+    <button class="toggleNavBtn" onclick="toggleNavbar()">
+        <span id="navIcon">☰</span>
+    </button>
+    <div class="Navbar" id="Navbar">
+        <div class="navButtons">
+            <a href="/Dashboard/index.html">Dashboard</a>
+            <a href="/Negozi/Negozi.html">Negozi</a>
+            <a href="/Magazzino/magazzino.html">Magazzino</a>
+            <a href="#">Comunicazioni</a>
+        </div>
+        <a href="#" class="logout">Log Out</a>
+    </div>
+
+    <header class="Header">
+        <div class="infoHeader">
+            <img src="/Dashboard/logo.png" alt="Logo Tech Retail SpA" height="200px">           
+            <h1 class="utente" style="color: #eb921c; font-size: 50px;">Filiali </h1>
+            <input type="text" id="searchInput" placeholder="Cerca filiale..." onkeyup="searchProducts()">
+        </div>
+    </header>
+
+    <div class="schermataInventario">
+        <div class="container table-container"> <!-- Aggiungi la classe table-container -->
+            <table id="inventoryTable">
+                <thead>
+                    <tr>                        
+                            <th>ID</th>
+                            <th>Indirizzo</th>
+                            <th>Magazzino</th>
+                            <th>Disponibile al Ritiro</th>
+                            <th>Telefono</th>
+                            <th>Indirizzo Mail</th>
+                        </a>
+                    </tr>
+                </thead>
+            <tbody>
+                <tr>
+                    <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">1</button></td>
+                    <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">Roma, Via Napoli in Fiamme</button></td>
+                    <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">Sì</button></td>
+                    <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">Sì</button></td>
+                    <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">333333333</button></td>
+                    <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">prova.prova@gmail.it</button></td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+    </div>
+
+
+<script src="/Negozi/Negozi.js"></script>
+</body>

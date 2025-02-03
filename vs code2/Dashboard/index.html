@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Gestionale</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato|Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/Dashboard/Index.css">
+</head>
+<body>
+    
+    <button class="toggleNavBtn" onclick="toggleNavbar()">
+        <span id="navIcon">☰</span>
+    </button>
+    <div class="Navbar" id="Navbar">
+        <div class="navButtons">
+            <a href="/Dashboard/index.html">Dashboard</a>
+            <a href="/Negozi/Negozi.html">Negozi</a>
+            <a href="/Magazzino/magazzino.html">Magazzino</a>
+            <a href="#">Comunicazioni</a>
+        </div>
+        <a href="#" class="logout">Log Out</a>
+    </div>
+    
+    <!-- Header -->
+    <header class="Header">
+        <div class="infoHeader">
+            <img src="/Dashboard/logo.png" alt="Logo Tech Retail SpA" height="200px">
+            <div class="Inventory">
+                <h1 style="color: #eb921c;">Roma, Via Napoli in Fiamme</h1>
+                <button class onclick="window.location.href='/Inventario/Inventario.html'">Vai all'Inventario</button>
+            </div>
+            <h1 class="utente" style="color: #eb921c; font-size: 25px;">Matteo Sottile <br> 32 Anni</h1>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <div class="Dashboard">
+        <div class="blocco1">
+            
+            <div class="Counter">Ordini in Corso:
+                <h1 style="font-size: 400%;">37</h1>
+            </div>
+            
+            <div class="stat">
+                <canvas id="pieChart"></canvas>
+            </div>
+            
+            <div class="stat">
+                <div class="Counter">Fatturato Giornaliero
+                    <h1 style="font-size: 300%;">12057</h1>
+                </div>
+            </div>
+        </div>
+        <div class="blocco2">
+            <div class="Graph">
+                <canvas id="lineChart"></canvas>
+            </div>         
+        </div>
+        <div class="blocco3"> <!-- foreach qui-->
+            <div class="feedback">
+                <div>
+                    <p>Bellissimo sito bravi tutti</p>           
+                    <div class="stars" data-rating="3"></div>
+                </div>
+                <div class="adButtons">
+                    <button class="acceptBtn" onclick="acceptFeedback()"><i class="fa fa-check"></i></button>
+                    <button class="rejectBtn" onclick="rejectFeedback()"><i class="fa fa-times"></i></button>
+                </div>
+            </div>
+            <div class="feedback">
+                <div>
+                    <p>Provaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>           
+                    <div class="stars" data-rating="4"></div>
+                </div>
+            <div class="adButtons">
+            <button class="acceptBtn" onclick="acceptFeedback()"><i class="fa fa-check"></i></button>
+            <button class="rejectBtn" onclick="rejectFeedback()"><i class="fa fa-times"></i></button>
+        </div>
+    </div>
+    <div class="feedback">
+        <div>
+            <p>Bellissimo sito bravi bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla</p>           
+            <div class="stars" data-rating="1"></div>
+        </div>
+        <div class="adButtons">
+            <button class="acceptBtn" onclick="acceptFeedback()"><i class="fa fa-check"></i></button>
+            <button class="rejectBtn" onclick="rejectFeedback()"><i class="fa fa-times"></i></button>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+<script src="/Dashboard/Index.js"></script>
