@@ -1,5 +1,48 @@
 ﻿@using TechRetail_B.Models
+@using Newtonsoft.Json
 @model TechRetail_B.Models.OrdiniViewModel
+@{
+    int[] ordiniOnline2 = new int[30];
+    int[] ordiniLoco2 = new int[30];
+
+    for (int i = 29; i >= 0; i--)
+    {
+        DateTime date = DateTime.Today.AddDays(-i);
+
+        if (Model.GraficoLineaOnline.ContainsKey(date))
+        {
+            ordiniOnline2[i] = Model.GraficoLineaOnline[date];
+
+        }
+        else
+        {
+            ordiniOnline2[i] = 0;
+
+        }
+    }
+    for (int i = 29; i >= 0; i--)
+    {
+        DateTime date = DateTime.Today.AddDays(-i);
+
+        if (Model.GraficoLineaLoco.ContainsKey(date))
+        {
+
+            ordiniLoco2[i] = Model.GraficoLineaLoco[date];
+        }
+        else
+        {
+
+            ordiniLoco2[i] = 0;
+        }
+    }
+
+    // Converte l'array in JSON
+    var ordiniOnlineJson = JsonConvert.SerializeObject(ordiniOnline2.Reverse());
+    var ordiniLocoJson = JsonConvert.SerializeObject(ordiniLoco2.Reverse());
+
+
+}
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -100,6 +143,7 @@
             </div>
         </div>
     </div>
+    <script src="~/js/DashBoard/Index.js"></script>
 <script>
 // Pie Chart
 var ctxPie = document.getElementById('pieChart').getContext('2d');
@@ -135,23 +179,23 @@ for (var i = 29; i >= 0; i--) {
     var giorno = new Date();
     giorno.setDate(oggi.getDate() - i);
     giorni.push(giorno.toLocaleDateString('it-IT'));
-}
-var ordiniOnline = [25, 30, 33, 28, 30, 31, 32, 30, 32, 28, 31, 26, 28, 28, 26, 32, 30, 28, 31, 35, 26, 29, 29, 30, 33, 34, 28, 29, 25, 33];
-var ordiniLoco = [27, 29, 26, 25, 27, 31, 28, 35, 35, 26, 31, 25, 29, 29, 28, 31, 26, 33, 25, 27, 26, 29, 26, 25, 27, 32, 25, 31, 34, 27];
-var ordiniTotali = ordiniOnline.map((val, i) => val + ordiniLoco[i]);
+}         
+                var ordiniOnline = @Html.Raw(ordiniOnlineJson); // Inietta l'array nel JavaScript
+                var ordiniLoco = @Html.Raw(ordiniLocoJson);
+                var ordiniTotali = ordiniOnline.map((val, i) => val + ordiniLoco[i]);
 
-var lineChart = new Chart(ctxLine, {
-    type: 'line',
-    data: {
-        labels: giorni,
-        datasets: [
-            {
-                label: 'Ordini Online',
+                var lineChart = new Chart(ctxLine, {
+                    type: 'line',
+                data: {
+                    labels: giorni,
+                datasets: [
+                {
+                    label: 'Ordini Online',
                 data: ordiniOnline,
                 borderColor: '#06BCC1',
                 backgroundColor: 'rgba(6, 188, 193, 0.2)',
                 fill: true
-            },
+                        },
             {
                 label: 'Ordini In Loco',
                 data: ordiniLoco,
@@ -198,7 +242,8 @@ var lineChart = new Chart(ctxLine, {
         }
     }
 });
-
 </script>
 </body>
-    <script src="~/js/DashBoard/Index.js"></script>
+</html>
+
+        

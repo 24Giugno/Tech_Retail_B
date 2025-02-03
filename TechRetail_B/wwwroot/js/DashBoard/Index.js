@@ -1,4 +1,4 @@
-using TechRetail_B.Models;
+
 document.querySelectorAll('.stars').forEach(starsContainer => {
     const rating = parseInt(starsContainer.getAttribute('data-rating'));
     for (let i = 1; i <= 5; i++) {
