@@ -1,0 +1,249 @@
+﻿@using TechRetail_B.Models
+@using Newtonsoft.Json
+@model TechRetail_B.Models.OrdiniViewModel
+@{
+    int[] ordiniOnline2 = new int[30];
+    int[] ordiniLoco2 = new int[30];
+
+    for (int i = 29; i >= 0; i--)
+    {
+        DateTime date = DateTime.Today.AddDays(-i);
+
+        if (Model.GraficoLineaOnline.ContainsKey(date))
+        {
+            ordiniOnline2[i] = Model.GraficoLineaOnline[date];
+
+        }
+        else
+        {
+            ordiniOnline2[i] = 0;
+
+        }
+    }
+    for (int i = 29; i >= 0; i--)
+    {
+        DateTime date = DateTime.Today.AddDays(-i);
+
+        if (Model.GraficoLineaLoco.ContainsKey(date))
+        {
+
+            ordiniLoco2[i] = Model.GraficoLineaLoco[date];
+        }
+        else
+        {
+
+            ordiniLoco2[i] = 0;
+        }
+    }
+
+    // Converte l'array in JSON
+    var ordiniOnlineJson = JsonConvert.SerializeObject(ordiniOnline2.Reverse());
+    var ordiniLocoJson = JsonConvert.SerializeObject(ordiniLoco2.Reverse());
+
+
+}
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Gestionale</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato|Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="~/css/DashBoard/Index.css">
+</head>
+<body>
+    
+    <button class="toggleNavBtn" onclick="toggleNavbar()">
+        <span id="navIcon">☰</span>
+    </button>
+    <div class="Navbar" id="Navbar">
+        <div class="navButtons">
+            <!--Sistemare riferimenti -->
+            <a href="/Dashboard/index.html">Dashboard</a>
+            <a href="/Negozi/Negozi.html">Negozi</a>
+            <a href="/Magazzino/magazzino.html">Magazzino</a>
+            <a href="#">Comunicazioni</a>
+        </div>
+        <a href="#" class="logout">Log Out</a>
+    </div>
+
+    <!-- Header -->
+    <header class="Header">
+        <div class="infoHeader">
+            <img src="~/Immagini/logo.png" alt="Logo Tech Retail SpA" height="200px">
+            <div class="Inventory">
+                <h1 style="color: #eb921c;">Roma, Via Napoli in Fiamme</h1>
+                                             <!--Sistemare riferimenti -->
+                <button class onclick="window.location.href='/Inventario/Inventario.html'">Vai all'Inventario</button>
+            </div>
+            <h1 class="utente" style="color: #eb921c; font-size: 25px;">Matteo Sottile <br> 32 Anni</h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="Dashboard">
+        <div class="blocco1">
+
+            <div class="Counter">
+                Ordini in Corso:
+                <h1 style="font-size: 400%;">@Model.OrdiniInCorso</h1>
+            </div>
+
+            <div class="stat">
+                <canvas id="pieChart"></canvas>
+            </div>
+
+            <div class="stat">
+                <div class="Counter">
+                    Fatturato Giornaliero
+                    <h1 style="font-size: 300%;">@Model.FatturatoGiornaliero</h1>
+                </div>
+            </div>
+        </div>
+        <div class="blocco2">
+            <div class="Graph">
+                <canvas id="lineChart"></canvas>
+            </div>
+        </div>
+        <div class="blocco3">
+            <!-- foreach qui-->
+            <div class="feedback">
+                <div>
+                    <p>Bellissimo sito bravi tutti</p>
+                    <div class="stars" data-rating="3"></div>
+                </div>
+                <div class="adButtons">
+                    <button class="acceptBtn" onclick="acceptFeedback()"><i class="fa fa-check"></i></button>
+                    <button class="rejectBtn" onclick="rejectFeedback()"><i class="fa fa-times"></i></button>
+                </div>
+            </div>
+            <div class="feedback">
+                <div>
+                    <p>Provaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <div class="stars" data-rating="4"></div>
+                </div>
+                <div class="adButtons">
+                    <button class="acceptBtn" onclick="acceptFeedback()"><i class="fa fa-check"></i></button>
+                    <button class="rejectBtn" onclick="rejectFeedback()"><i class="fa fa-times"></i></button>
+                </div>
+            </div>
+            <div class="feedback">
+                <div>
+                    <p>Bellissimo sito bravi bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla</p>
+                    <div class="stars" data-rating="1"></div>
+                </div>
+                <div class="adButtons">
+                    <button class="acceptBtn" onclick="acceptFeedback()"><i class="fa fa-check"></i></button>
+                    <button class="rejectBtn" onclick="rejectFeedback()"><i class="fa fa-times"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/js/DashBoard/Index.js"></script>
+<script>
+// Pie Chart
+var ctxPie = document.getElementById('pieChart').getContext('2d');
+
+var pieChart = new Chart(ctxPie, {
+    type: 'pie',
+    data: {
+        labels: ['In Loco', 'Online'],
+        datasets: [{
+            label: 'Statistiche Ordini',
+            data: [(100-@Model.PercentualeLoco),@Model.PercentualeLoco],
+            backgroundColor: ['#000', '#bd7d28'],
+            hoverOffset: 4
+        }]
+    },
+    options: {
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: { font: { size: 20 },
+                color: '#fff'
+            }
+            }
+        }
+    }
+});
+
+// Line Chart con 3 dataset
+var ctxLine = document.getElementById('lineChart').getContext('2d');
+var oggi = new Date();
+var giorni = [];
+for (var i = 29; i >= 0; i--) {
+    var giorno = new Date();
+    giorno.setDate(oggi.getDate() - i);
+    giorni.push(giorno.toLocaleDateString('it-IT'));
+}         
+                var ordiniOnline = @Html.Raw(ordiniOnlineJson); // Inietta l'array nel JavaScript
+                var ordiniLoco = @Html.Raw(ordiniLocoJson);
+                var ordiniTotali = ordiniOnline.map((val, i) => val + ordiniLoco[i]);
+
+                var lineChart = new Chart(ctxLine, {
+                    type: 'line',
+                data: {
+                    labels: giorni,
+                datasets: [
+                {
+                    label: 'Ordini Online',
+                data: ordiniOnline,
+                borderColor: '#06BCC1',
+                backgroundColor: 'rgba(6, 188, 193, 0.2)',
+                fill: true
+                        },
+            {
+                label: 'Ordini In Loco',
+                data: ordiniLoco,
+                borderColor: '#FF5733',
+                backgroundColor: 'rgba(255, 87, 51, 0.2)',
+                fill: true
+            },
+            {
+                label: 'Totale Ordini',
+                data: ordiniTotali,
+                borderColor: '#4CAF50',
+                backgroundColor: 'rgba(76, 175, 80, 0.2)',
+                fill: true
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                labels: {
+                    color: '#fff'
+                }
+            }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    color: '#fff'
+                },
+                grid: {
+                    color: '#rgba(255, 255, 255, 0.384)'
+                }
+            },
+            y: {
+                ticks: {
+                    color: '#fff'
+                },
+                grid: {
+                    color: '#rgba(255, 255, 255, 0.384)'
+                }
+            }
+        }
+    }
+});
+</script>
+</body>
+</html>
+
+        

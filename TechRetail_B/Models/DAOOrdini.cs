@@ -141,7 +141,7 @@ public class DAOOrdini : IDAO
     #endregion
 
     #region METODI
-    static double CalcoloPercentualeLoco(List<Entity> lista)
+    public double CalcoloPercentualeLoco(List<Entity> lista)
     {
         var numeroOrdini = lista.Count();
         var ordiniLoco = from Ordine o in lista
@@ -149,12 +149,12 @@ public class DAOOrdini : IDAO
                          select o;
         var numeroOrdiniLoco = ordiniLoco.Count();
 
-        double ris = (numeroOrdini - numeroOrdiniLoco) / 100;
+        double ris = (numeroOrdiniLoco * 100) / numeroOrdini;
 
         return ris;
     }
 
-    static int OrdiniInCorso(List<Entity> lista)
+    public int OrdiniInCorso(List<Entity> lista)
     {
         var ordiniCorso = from Ordine o in lista
                           where o.Stato != "consegnato"
@@ -163,7 +163,7 @@ public class DAOOrdini : IDAO
         return ris;
     }
 
-    static double FatturatoGiornaliero(List<Entity> listaOrdini)
+    public double FatturatoGiornaliero(List<Entity> listaOrdini)
     {
         double query = (from Ordine o in listaOrdini
                     where o.Data.Date == DateTime.Today
@@ -172,7 +172,7 @@ public class DAOOrdini : IDAO
         return query;
     }
 
-    static Dictionary<DateTime,int> GraficoLineaLoco(List<Entity> listaOrdini)
+    public Dictionary<DateTime,int> GraficoLineaLoco(List<Entity> listaOrdini)
     {
         var query = from Ordine o in listaOrdini
                     where o.InLoco == true
@@ -187,7 +187,7 @@ public class DAOOrdini : IDAO
         return dizionario;
     }
 
-    static Dictionary<DateTime, int> GraficoLineaOnline(List<Entity> listaOrdini)
+    public Dictionary<DateTime, int> GraficoLineaOnline(List<Entity> listaOrdini)
     {
         var query = from Ordine o in listaOrdini
                     where o.InLoco == false
