@@ -6,6 +6,7 @@ namespace TechRetail_B.Models
     {
         public int Stelle {  get; set; }
         public string Commento { get; set; }
+        public string Stato { get; set; }
         public Ordine _Ordine { get; set; }
         public Utente _Utente { get; set; }
 

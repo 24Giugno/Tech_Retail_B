@@ -29,12 +29,13 @@ namespace TechRetail_B.Models
            {
                {"@Stelle",((Feedback)entity).Stelle},
                {"@Commento",((Feedback)entity).Commento.Replace("'","''")},
+               {"@Stato",((Feedback)entity).Stato.Replace("'","''")}, 
                {"@idOrdineFK",((Feedback)entity)._Ordine.Id},
                {"@idUtenteFK",((Feedback)entity)._Ordine.Id},
            };
 
-            const string query = "INSERT INTO Feedbacks (Stelle,Commento,idOrdineFK,idUtenteFK) " +
-                                 "VALUES (@Stelle,@Commento,@idOrdineFK,@idUtenteFK)";
+            const string query = "INSERT INTO Feedbacks (Stelle,Commento,Stato,idOrdineFK,idUtenteFK) " +
+                                 "VALUES (@Stelle,@Commento,@Stato,@idOrdineFK,@idUtenteFK)";
 
             return db.UpdateDb(query, parametri);
 
@@ -106,12 +107,13 @@ namespace TechRetail_B.Models
                {"@Id", ((Feedback)entity).Id },
                {"@Stelle",((Feedback)entity).Stelle},
                {"@Commento",((Feedback)entity).Commento.Replace("'","''")},
+               {"@Stato",((Feedback)entity).Stato.Replace("'","''")},
                {"@idOrdineFK",((Feedback)entity)._Ordine.Id},
                {"@idUtenteFK",((Feedback)entity)._Ordine.Id},
            };
 
             const string query = "UPDATE Feedbacks SET " +
-                                 "Stelle = @Stelle, Commento = @Commento, idOrdineFK = @idOrdineFK, idUtenteFK = @idUtenteFK " +
+                                 "Stelle = @Stelle, Commento = @Commento, Stato= @Stato, idOrdineFK = @idOrdineFK, idUtenteFK = @idUtenteFK " +
                                  "WHERE id = @Id ";
             return db.UpdateDb(query, parametri);
         }

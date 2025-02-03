@@ -47,12 +47,13 @@ namespace TechRetail_B.Models
             var parametri = new Dictionary<string, object>
            {
                {"@Nome",((Prodotto)entity).Nome.Replace("'", "''")},
+               {"@Prezzo",((Prodotto)entity).Prezzo },
                {"@Descrizione",((Prodotto)entity).Descrizione.Replace("'", "''")},
                {"@ImmagineURL",((Prodotto)entity).ImmagineURL.Replace("'", "''")}
            };
-            const string query = "INSERT INTO prodotti (Nome,Descrizione,ImmagineURL) " +
+            const string query = "INSERT INTO prodotti (Nome,Descrizione,Prezzo,ImmagineURL) " +
                                  "VALUES " +
-                                 "(@Nome,@Descrizione,@ImmagineURL)";
+                                 "(@Nome,@Descrizione,@Prezzo,@ImmagineURL)";
 
             return db.UpdateDb(query, parametri);
         }
@@ -62,6 +63,7 @@ namespace TechRetail_B.Models
            {
                {"@Id",((Utente)entity).Id },
                {"@Nome",((Prodotto)entity).Nome.Replace("'", "''")},
+               {"@Prezzo",((Prodotto)entity).Prezzo },
                {"@Descrizione",((Prodotto)entity).Descrizione.Replace("'", "''")},
                {"@ImmagineURL",((Prodotto)entity).ImmagineURL.Replace("'", "''")}
            };
@@ -69,6 +71,7 @@ namespace TechRetail_B.Models
             const string query = $"UPDATE Prodotti SET " +
                                 $"nome= @Nome, " +
                                 $"descrizione= @Desrizione, " +
+                                $"prezzo= @Prezzo, " +
                                 $"immagineURL= @ImmagineURL, " +
                                 $"WHERE id=@Id";
 
