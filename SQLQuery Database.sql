@@ -1,14 +1,13 @@
 CREATE DATABASE TechRetail_B;
 
-
-
 USE TechRetail_B;
 
 
 CREATE TABLE prodotti (
     id INT PRIMARY KEY IDENTITY,
     nome NVARCHAR(200) NOT NULL,
-    descrizione NVARCHAR(500),
+    descrizione NVARCHAR(1500),
+	prezzo FLOAT,
     immagineURL NVARCHAR(500)
 );
 
@@ -65,6 +64,7 @@ CREATE TABLE feedbacks (
     id INT PRIMARY KEY IDENTITY,
     stelle INT NOT NULL CHECK (stelle BETWEEN 1 AND 5),
     commento NVARCHAR(500),
+	stato VARCHAR(50)CHECK (stato IN ('revisione', 'accettato', 'rifiutato')),
     idOrdineFK INT NOT NULL,
     idUtenteFK INT NOT NULL,
     FOREIGN KEY (idOrdineFK) REFERENCES ordine(id_ordine),
