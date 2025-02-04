@@ -8,7 +8,7 @@ namespace TechRetail_B.Models
         IDatabase db;
         DAOFeedbacks()
         {
-            db = new Database("TechRetail_B");
+            db = new Database("TechRetail_B", "DESKTOP-L1JR8LA");
         }
 
         static DAOFeedbacks instance = null;

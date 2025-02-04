@@ -31,6 +31,7 @@ namespace TechRetail_B.Controllers
 
             var viewModel2 = new OrdiniViewModel
             {
+                UtenteLoggato = i,
                 OrdiniInCorso = DAOOrdini.GetInstance().OrdiniInCorso(listaOrdini),
                 PercentualeLoco = DAOOrdini.GetInstance().CalcoloPercentualeLoco(listaOrdini),
                 FatturatoGiornaliero = DAOOrdini.GetInstance().FatturatoGiornaliero(listaOrdini),
