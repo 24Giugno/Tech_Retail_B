@@ -8,7 +8,7 @@ namespace TechRetail_B.Models
         IDatabase db;
         DAOFiliali()
         {
-            db = new Database("TechRetail_B", "DESKTOP-L1JR8LA");
+            db = new Database("TechRetail_B", NomeDatabase.Nome);
         }
 
         static DAOFiliali instance = null;

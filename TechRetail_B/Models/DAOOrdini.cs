@@ -12,7 +12,7 @@ public class DAOOrdini : IDAO
     IDatabase db;
     DAOOrdini()
     {
-        db = new Database("TechRetail_B", "DESKTOP-L1JR8LA");
+        db = new Database("TechRetail_B", NomeDatabase.Nome);
     }
 
     static DAOOrdini instance = null;
