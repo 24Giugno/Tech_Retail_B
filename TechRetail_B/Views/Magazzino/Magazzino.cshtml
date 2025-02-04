@@ -1,5 +1,5 @@
-﻿
-
+﻿@using TechRetail_B.Models
+@model TechRetail_B.Models.MagazzinoViewModel
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -20,7 +20,7 @@
     <div class="Navbar" id="Navbar">
         <div class="navButtons">
             <a href="/Dashboard/index.html">Dashboard</a>
-            <a href="/Negozi/Negozi.html">Negozi</a>
+            <a href="~/Negozi/Index">Negozi</a>
             <a href="/Magazzino/magazzino.html">Magazzino</a>
             <a href="#">Comunicazioni</a>
         </div>
@@ -57,15 +57,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">1</button></td>
-                        <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">Laptop</button></td>
-                        <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">999.99</button></td>
-                        <!--Queste tre portano alla scheda prodotto-->
-                        <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">10</button></td>
-                        <!--Questo porta al form Restock-->
-                    </tr>
-                    <tr>
+                    @foreach (var p in Model.Prodotti)
+                    {
+                        string id = p["id"];  // Estraggo il valore con la chiave "Id"
+                        string nome = p["nome"];
+                        string prezzo = p["prezzo"];
+                        string quantita = p["quantita"];
+                            <tr>
+                                <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">@id</button></td>
+                                <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">@nome</button></td>
+                                <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">@prezzo</button></td>
+                                <!--Queste tre portano alla scheda prodotto-->
+                                <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">@quantita</button></td>
+                                <!--Questo porta al form Restock-->
+                            </tr>
+                    }
+<!--                    <tr>
                         <td>2</td>
                         <td>Mouse</td>
                         <td>25.50</td>
@@ -209,6 +216,7 @@
                         <td>15.00</td>
                         <td>9</td>
                     </tr>
+-->
                 </tbody>
             </table>
         </div>

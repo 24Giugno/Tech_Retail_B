@@ -106,6 +106,30 @@ namespace TechRetail_B.Models
                 return null;
         }
 
+        public List<Dictionary<string,string>> ListaInventario(int id)
+        {
+            var parametro = new Dictionary<string, object>
+            {
+                {"@Id", id }
+            };
+
+            string query = "SELECT prodotti.id as Id, Nome, prezzo, quantita " +
+                           "FROM Prodotti JOIN stocks " +
+                           "ON Prodotti.id = Stocks.idProdottoFK " +
+                           "WHERE Stocks.idFilialeFK= @Id;";
+
+            return db.ReadDb(query,parametro);
+        }
+
+        public List<Dictionary<string, string>> ListaMagazzino()
+        {
+            string query = "SELECT prodotti.id as Id, Nome, prezzo, quantita " +
+                           "FROM Prodotti JOIN stocks " +
+                           "ON Prodotti.id = Stocks.idProdottoFK;";
+
+            return db.ReadDb(query);
+        }
+
         #endregion
     }
 }

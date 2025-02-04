@@ -63,11 +63,10 @@
     <div class="Navbar" id="Navbar">
         <div class="navButtons">
             <!--Sistemare riferimenti -->
-            <a href="/Dashboard/index.html">Dashboard</a>
-            <a href="/Negozi/Negozi.html">Negozi</a>
-            <a href="/Magazzino/magazzino.html">Magazzino</a>
+            <a href="~/Negozi/Index">Negozi</a>
+            <a href="~/Dashboard/Index">Dashboard</a>
+            <a href="~/Magazzino/Index/@Model.UtenteLoggato.Id">Magazzino</a>
             <a href="#">Comunicazioni</a>
-            <a href="~/Restock/Index/@Model "></a>
         </div>
         <a href="#" class="logout">Log Out</a>
     </div>
@@ -78,8 +77,10 @@
             <img src="~/Immagini/logo.png" alt="Logo Tech Retail SpA" height="200px">
             <div class="Inventory">
                 <h1 style="color: #eb921c;">@Model.UtenteLoggato._Filiale.Indirizzo </h1>
-                                             <!--Sistemare riferimenti -->
-                <button class onclick="window.location.href='/Inventario/Inventario.html'">Vai all'Inventario</button>
+                                             <!--Inventario -->
+    <button onclick="window.location.href='@Url.Action("Index", "Inventario", new { idUtente = Model.UtenteLoggato.Id })'">
+    Vai all'Inventario
+</button>
             </div>
             <h1 class="utente" style="color: #eb921c; font-size: 25px;">@Model.UtenteLoggato.Nome @Model.UtenteLoggato.Cognome</h1>
         </div>
