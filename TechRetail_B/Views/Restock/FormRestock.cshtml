@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form di Restock</title>
+    <link rel="stylesheet" href="~/css/Restock/styles.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato|Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <button class="toggleNavBtn" onclick="toggleNavbar()">
+        <span id="navIcon">☰</span>
+    </button>
+    <div class="Navbar" id="Navbar">
+        <div class="navButtons">
+            <a href="/Dashboard/index.html">Dashboard</a>
+            <a href="/Negozi/Negozi.html">Negozi</a>
+            <a href="/Magazzino/magazzino.html">Magazzino</a>
+            <a href="#">Comunicazioni</a>
+        </div>
+        <a href="#" class="logout">Log Out</a>
+    </div>
+
+    <!-- Header -->
+    <header class="Header">
+        <div class="infoHeader">
+            <img src="~/Immagini/logo.png" alt="Logo Tech Retail SpA" height="200px">
+            <div class="Inventory">
+                <h1 style="color: #eb921c;">Roma, Via Napoli in Fiamme</h1>
+                <button class onclick="window.location.href='/Inventario/Inventario.html'">Vai all'Inventario</button>
+            </div>
+            <h1 class="utente" style="color: #eb921c; font-size: 25px;">Matteo Sottile <br> 32 Anni</h1>
+        </div>
+    </header>
+    <div class="container">
+        <div class="form-container">
+            <h2>Form di Restock</h2>
+            <form>
+                <label for="productName">Nome del Prodotto</label>
+                <input type="text" id="productName" name="productName" required>
+
+                <label for="quantity">Quantità </label>
+                <input type="number" id="quantity" name="quantity" required>
+
+                <label for="orderDate">Data di Ordine</label>
+                <input type="date" id="orderDate" name="orderDate" required>
+
+                <label for="orderDate">Data di Arrivo</label>
+                <input type="date" id="orderDate" name="orderDate" required>
+
+
+                <button type="submit">Invia</button>
+            </form>
+        </div>
+    </div>
+    <script src="~/js/Restock/Index.js"></script>
+</body>
+</html>
