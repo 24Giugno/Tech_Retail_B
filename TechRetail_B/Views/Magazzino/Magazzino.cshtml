@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
@@ -29,7 +31,15 @@
         <div class="infoHeader">
             <img src="~/Immagini/logo.png" alt="Logo Tech Retail SpA" height="200px">
             <h1 class="utente" style="color: #eb921c; font-size: 50px;">Magazzino</h1>
-            <input type="text" id="searchInput" placeholder="Cerca prodotto..." onkeyup="searchProducts()">
+            <!-- <input type="text" id="searchInput" placeholder="Cerca prodotto..." onkeyup="searchProducts()"> -->
+            
+            <form action="~/Magazzino/CercaProdottiLinq" method="post" onsubmit="return queryfiltro()">
+                
+            <input type="text" id="cercaSimile" placeholder="Cerca" onkeyup="searchProducts()"/>
+            
+            <input type="submit" value="cerca"/>
+            </form>
+            
         </div>
     </header>
 
