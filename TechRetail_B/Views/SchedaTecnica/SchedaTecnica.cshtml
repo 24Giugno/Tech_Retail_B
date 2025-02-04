@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scheda Tecnica</title>
+    <link rel="stylesheet" href="~/css/SchedaTecnica/styles.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato|Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <button class="toggleNavBtn" onclick="toggleNavbar()">
+        <span id="navIcon">☰</span>
+    </button>
+    <div class="Navbar" id="Navbar">
+        <div class="navButtons">
+            <a href="/Dashboard/index.html">Dashboard</a>
+            <a href="/Negozi/Negozi.html">Negozi</a>
+            <a href="/Magazzino/magazzino.html">Magazzino</a>
+            <a href="#">Comunicazioni</a>
+        </div>
+        <a href="#" class="logout">Log Out</a>
+    </div>
+
+    <!-- Header -->
+    <header class="Header">
+        <div class="infoHeader">
+            <img src="~/immagini/logo.png" alt="Logo Tech Retail SpA" height="200px">
+            <div class="Inventory">
+                <h1 style="color: #eb921c;">Roma, Via Napoli in Fiamme</h1>
+                <button class onclick="window.location.href='/Inventario/Inventario.html'">Vai all'Inventario</button>
+            </div>
+            <h1 class="utente" style="color: #eb921c; font-size: 25px;">Matteo Sottile <br> 32 Anni</h1>
+        </div>
+    </header>
+    <!-- scheda tecnica-->
+    <div style="display: flex;justify-content: center;">
+        <div class="container">
+            <div class="product-details">
+                <h2>Scheda Tecnica del Prodotto</h2>
+                <table>
+                    <tr>
+                        <th>Nome del Prodotto</th>
+                        <td>Telephone</td>
+                    </tr>
+
+                    <tr>
+                        <th>Prezzo</th>
+                        <td>€499,99</td>
+                    </tr>
+                    <tr>
+                        <th>Descrizione</th>
+                        <td>Smartphone di ultima generazione con display AMOLED, fotocamera da 48MP e batteria da 4000mAh.</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="~/js/SchedaTecnica/index.js"></script>
+</body>
+</html>
