@@ -5,6 +5,7 @@
         public class OrdiniViewModel
         {
             // Proprietà necessarie per la view, ad esempio:
+            public Utente UtenteLoggato { get; set; }
             public int OrdiniInCorso { get; set; }
             public double PercentualeLoco { get; set; }
             public double FatturatoGiornaliero { get; set; }

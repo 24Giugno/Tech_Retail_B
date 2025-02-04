@@ -8,6 +8,7 @@ namespace TechRetail_B.Models
         IDatabase db;
         DAOUtenti()
         {
+           db =  new Database("TechRetail_B", "DESKTOP-L1JR8LA");
         }
 
         static DAOUtenti instance = null;
