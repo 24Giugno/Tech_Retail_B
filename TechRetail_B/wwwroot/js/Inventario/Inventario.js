@@ -18,6 +18,9 @@ function searchProducts() {
     });
 }
 
+
+
+
 document.addEventListener("DOMContentLoaded", function() {
         let rows = document.querySelectorAll("#inventoryTable tbody tr");
         
@@ -61,3 +64,5 @@ function toggleNavbar() {
         infoHeader.style.marginRight = "0";
     }
 }
+
+

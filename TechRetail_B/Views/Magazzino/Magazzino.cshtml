@@ -24,7 +24,7 @@
             <a href="~/Magazzino/Index/@Model.UtenteLoggato.Id">Magazzino</a>
             <a href="#">Comunicazioni</a>
         </div>
-        <a href="#" class="logout">Log Out</a>
+        <a href="~/Login/Logout"> Log Out</a>
     </div>
 
     <header class="Header">
@@ -32,13 +32,21 @@
             <img src="~/Immagini/logo.png" alt="Logo Tech Retail SpA" height="200px">
             <h1 class="utente" style="color: #eb921c; font-size: 50px;">Magazzino</h1>
             <!-- <input type="text" id="searchInput" placeholder="Cerca prodotto..." onkeyup="searchProducts()"> -->
-            
-            <form action="~/Magazzino/CercaProdottiLinq" method="post" onsubmit="return queryfiltro()">
-                
-            <input type="text" id="cercaSimile" placeholder="Cerca" onkeyup="searchProducts()"/>
-            
-            <input type="submit" value="cerca"/>
+         
+            <form method="post" action="@Url.Action("CercaProdottiLinq", "Magazzino")">
+                <input type="hidden" name="Id" value="@Model.UtenteLoggato.Id">
+                <input type="text" name="parola" id="cercaSimile" placeholder="Cerca prodotto...">
+                <button type="submit">🔍</button>
             </form>
+
+
+
+            <!--  <form action="~/Magazzino/CercaProdottiLinq" method="post" onsubmit="return queryfiltro()">
+                
+          <!--  <input type="text" id="cercaSimile" placeholder="Cerca" onkeyup="searchProducts()"/>
+
+                  <!--  <input type="submit" value="cerca"/>
+                  <!--  </form>
             
         </div>
     </header>

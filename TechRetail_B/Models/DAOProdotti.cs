@@ -1,4 +1,5 @@
-﻿using MSSTU.DB.Utility;
+﻿using Microsoft.Data.SqlClient;
+using MSSTU.DB.Utility;
 
 namespace TechRetail_B.Models
 {
@@ -131,5 +132,22 @@ namespace TechRetail_B.Models
         }
 
         #endregion
+
+
+        public List<Dictionary<string, string>> CercaProdotti(int idFiliale, string termine)
+        {
+            var parametro = new Dictionary<string, object>
+    {
+        { "@Id", idFiliale },
+        { "@termine", "%" + termine + "%" } // Aggiungi % ai lati del termine per il LIKE
+    };
+
+            string query = "SELECT prodotti.id as Id, Nome, prezzo, quantita " +
+                           "FROM Prodotti " +
+                           "JOIN stocks ON Prodotti.id = Stocks.idProdottoFK " +
+                           "WHERE Stocks.idFilialeFK = @Id AND Nome LIKE @termine;";
+
+            return db.ReadDb(query, parametro);
+        }
     }
 }
