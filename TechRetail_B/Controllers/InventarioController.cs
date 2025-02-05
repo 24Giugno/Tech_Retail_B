@@ -6,6 +6,7 @@ namespace TechRetail_B.Controllers
 {
     public class InventarioController : Controller
     {
+
         public IActionResult Index(int idUtente)
         {
             Entity e = DAOUtenti.GetInstance().FindRecord(idUtente);
@@ -20,6 +21,7 @@ namespace TechRetail_B.Controllers
             };
 
             return View("Inventario",viewModel);
+
         }
     }
 }
