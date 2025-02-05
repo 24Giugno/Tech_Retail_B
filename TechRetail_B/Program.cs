@@ -21,5 +21,5 @@ app.UseRouting();
 app.UseAuthorization();
 
 //app.MapRazorPages();
-app.MapControllerRoute(name: "default", pattern: "{controller=Magazzino}/{action=Index}/{id?}");
+app.MapControllerRoute(name: "default", pattern: "{controller=Login}/{action=Index}/{id?}");
 app.Run();
