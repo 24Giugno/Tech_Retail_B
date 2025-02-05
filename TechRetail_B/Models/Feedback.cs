@@ -9,7 +9,6 @@ namespace TechRetail_B.Models
         public string Stato { get; set; }
         public Ordine _Ordine { get; set; }
         public Utente _Utente { get; set; }
-
         public Feedback() { }
 
     }

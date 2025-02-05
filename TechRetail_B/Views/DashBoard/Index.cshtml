@@ -54,6 +54,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="~/css/DashBoard/Index.css">
+    <script src="~/js/DashBoard/Index.js" asp-append-version="true"></script>
 </head>
 <body>
     
@@ -114,17 +115,20 @@
         </div>
         <div class="blocco3">
             <!-- foreach qui-->
-            <div class="feedback">
-                <div>
-                    <p>Bellissimo sito bravi tutti</p>
-                    <div class="stars" data-rating="3"></div>
+            @foreach (TechRetail_B.Models.Feedback f in Model.Feedbacks)
+            {
+                <div class="feedback">
+                    <div>
+                    <p>@f.Commento</p>
+                    <div class="stars" data-rating="@f.Stelle"></div>
                 </div>
                 <div class="adButtons">
-                    <button class="acceptBtn" onclick="acceptFeedback()"><i class="fa fa-check"></i></button>
-                    <button class="rejectBtn" onclick="rejectFeedback()"><i class="fa fa-times"></i></button>
+                        <button class="acceptBtn" onclick="acceptFeedback(@f.Id)"><i class="fa fa-check"></i></button>
+                        <button class="rejectBtn" onclick="rejectFeedback(@f.Id)"><i class="fa fa-times"></i></button>
                 </div>
             </div>
-            <div class="feedback">
+            }
+            <!--<div class="feedback">
                 <div>
                     <p>Provaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
                     <div class="stars" data-rating="4"></div>
@@ -144,9 +148,9 @@
                     <button class="rejectBtn" onclick="rejectFeedback()"><i class="fa fa-times"></i></button>
                 </div>
             </div>
+            -->
         </div>
     </div>
-    <script src="~/js/DashBoard/Index.js"></script>
 <script>
 // Pie Chart
 var ctxPie = document.getElementById('pieChart').getContext('2d');

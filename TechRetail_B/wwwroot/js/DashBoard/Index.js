@@ -11,12 +11,12 @@ document.querySelectorAll('.stars').forEach(starsContainer => {
     }
 });
 
-function acceptFeedback() {
-    alert("Feedback accettato e inviato alla pagina e-Commerce!");
+function acceptFeedback(Id) {
+    alert("Feedback(id: " + Id + ") accettato e inviato alla pagina e-Commerce!");
 }
 
-function rejectFeedback() {
-    alert("Feedback rifiutato!");
+function rejectFeedback(Id) {
+    alert("Feedback(id: " + Id + ") rifiutato!");
 }
 
 
