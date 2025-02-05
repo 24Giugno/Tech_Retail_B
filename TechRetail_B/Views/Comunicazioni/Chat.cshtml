@@ -1,0 +1,91 @@
+﻿@using TechRetail_B.Models
+@model TechRetail_B.Models.MessaggiViewModel
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Gestionale</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato|Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+    <link rel="stylesheet" href="~/css/Comunicazioni/Chat.css">
+<body>
+
+    <button class="toggleNavBtn" onclick="toggleNavbar()">
+        <span id="navIcon">☰</span>
+    </button>
+    <div class="Navbar" id="Navbar">
+        <div class="navButtons">
+            <a href="~/Dashboard/IndexDashBoard/@Model.UtenteLoggato.Id">Dashboard</a>
+            <a href="~/Filiali/Index/@Model.UtenteLoggato.Id">Negozi</a>
+            <a href="~/Magazzino/Index/@Model.UtenteLoggato.Id">Magazzino</a>
+            <a href="#">Comunicazioni</a>
+        </div>
+        <a href="~/Login/Logout"> Log Out</a>    
+    </div>
+
+    <!-- Header -->
+    <header class="Header">
+        <div class="infoHeader">
+            <img src="~/Immagini/logo2tech.png" alt="Logo Tech Retail SpA" height="200px">
+            <div class="Inventory">
+                <h1 style="color: #eb921c;">Chat</h1>
+            </div>
+            <h1 class="utente" style="color: #eb921c; font-size: 25px;">@Model.UtenteLoggato.Nome @Model.UtenteLoggato.Cognome</h1>
+        </div>
+    </header>
+
+    <div class="Content">
+        <div class="ChatBox">
+            <div class="Screen" id="chatScreen">
+                <div class="messaggi">
+                @foreach (TechRetail_B.Models.Messaggio messaggio in Model.Messaggi)
+                {
+                    if (messaggio._Utente.Id == Model.UtenteLoggato.Id)
+                    {
+                        <div class="Inviato">
+                            <p class="testoInviato">
+                                <span class="Nome">
+                                    @messaggio._Utente.Nome @messaggio._Utente.Cognome
+                                </span>
+                                @messaggio.Contenuto<br />
+                                <span class="data">
+                                    @messaggio.Dataora
+                                </span>
+                            </p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="Ricevuto">
+                            <p class="testoRicevuto">
+                                <span class="Nome">
+                                    @messaggio._Utente.Nome @messaggio._Utente.Cognome
+                                </span>
+                                @messaggio.Contenuto<br />
+                                <span class="data">
+                                    @messaggio.Dataora
+                                </span>
+                            </p>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="BoxMess">
+                <form class="Messagio" action="#" method="post" onsubmit="return inviaMessaggio(idUtente)">
+                    <input id="inputMessage" type="text" placeholder="Scrivi un messaggio...">
+                    <button id="sendMessageBtn" type="submit">
+                        <i class="fa fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/js/Comunicazioni/Chat.js"></script>
+</body>
+</html>
