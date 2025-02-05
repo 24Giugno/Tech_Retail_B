@@ -7,9 +7,9 @@ namespace TechRetail_B.Controllers
 {
     public class MagazzinoController : Controller
     {
-        public IActionResult Index(int idUtente)
+        public IActionResult Index(int Id)
         {
-            Entity e = DAOUtenti.GetInstance().FindRecord(idUtente);
+            Entity e = DAOUtenti.GetInstance().FindRecord(Id);
             Utente i = (Utente)e;
 
             var inventario = DAOProdotti.GetInstance().ListaMagazzino();

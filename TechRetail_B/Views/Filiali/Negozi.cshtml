@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using TechRetail_B.Models
+@model TechRetail_B.Models.FilialiViewModel
+<!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
@@ -16,9 +18,9 @@
     </button>
     <div class="Navbar" id="Navbar">
         <div class="navButtons">
-            <a href="/Dashboard/index.html">Dashboard</a>
-            <a href="~/Negozi/Index">Negozi</a>
-            <a href="/Magazzino/magazzino.html">Magazzino</a>
+            <a href="~/Dashboard/IndexDashBoard/@Model.UtenteLoggato.Id">Dashboard</a>
+            <a href="~/Filiali/Index/@Model.UtenteLoggato.Id">Negozi</a>
+            <a href="~/Magazzino/Index/@Model.UtenteLoggato.Id">Magazzino</a>
             <a href="#">Comunicazioni</a>
         </div>
         <a href="#" class="logout">Log Out</a>
@@ -39,23 +41,25 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Indirizzo</th>
                         <th>Magazzino</th>
-                        <th>Disponibile al Ritiro</th>
-                        <th>Telefono</th>
+                        <th>Indirizzo</th>
                         <th>Indirizzo Mail</th>
+                        <th>Telefono</th>
+                        <th>Disponibile al Ritiro</th>
                         </a>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody> <!--filiali (magazzino, indirizzo, email, telefono, disponibileAlRitiro)-->
+                        @foreach (TechRetail_B.Models.Filiale f in Model.Filiali){
                     <tr>
-                        <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">1</button></td>
-                        <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">Roma, Via Napoli in Fiamme</button></td>
-                        <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">Sì</button></td>
-                        <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">Sì</button></td>
-                        <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">333333333</button></td>
-                        <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">prova.prova@gmail.it</button></td>
+                        <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">@f.Id</button></td>
+                            <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">@((f.Magazzino) ? "Sì" : "No")</button></td>
+                        <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">@f.Indirizzo</button></td>
+                        <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">@f.Email</button></td>
+                        <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">@f.Telefono</button></td>
+                            <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">@((f.DisponibileAlRitiro) ? "Sì" : "No")</button></td>
                     </tr>
+                        }
                 </tbody>
             </table>
         </div>
