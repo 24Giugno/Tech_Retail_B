@@ -20,7 +20,7 @@ namespace TechRetail_B.Controllers
         {
             _tentativiAccesso++;
             _logger.LogInformation($"Tentativo numero {_tentativiAccesso} alle {DateTime.Now}");
-            return View(_tentativiAccesso);
+            return View("Index",_tentativiAccesso);
         }
 
         public IActionResult Accesso(Dictionary<string, string> parameters)
@@ -39,7 +39,7 @@ namespace TechRetail_B.Controllers
                 _utenteLoggato = (Utente)e;
                 _logger.LogInformation($"Utente Loggato {_utenteLoggato.Mail} alle ore {DateTime.Now}");
                 
-                Console.WriteLine("GiustoForse");
+                
                 // Passo l'oggetto alla pagine HTML
                 return RedirectToAction("IndexLogin","DashBoard",((Utente)e));
               
@@ -48,7 +48,7 @@ namespace TechRetail_B.Controllers
             {
                 // Se la combo non esiste significa che le credenziali sono sbagliate e rimandiamo alla pagina Index dove fare 
                 // di nuovo Login.
-                Console.WriteLine("Sbaglaito");
+                
                 return RedirectToAction("Index");
             }
         }
@@ -56,5 +56,24 @@ namespace TechRetail_B.Controllers
         {
             return View();
         }
+
+      
+        public IActionResult Logout()
+        {
+            _logger.LogInformation($"Utente Disconnesso alle ore {DateTime.Now}");
+            Console.WriteLine("Entrato");
+            _utenteLoggato = null; // Resetta l'utente loggato
+            _tentativiAccesso = -1; // Reset del contatore di tentativi (opzionale)
+
+            return RedirectToAction("Login"); // Reindirizza alla pagina di login
+        }
+
+
+
+
+
+
+
+
     }
 }

@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using TechRetail_B.Models
+@model TechRetail_B.Models.InventarioViewModel
+<!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
@@ -17,9 +19,9 @@
     </button>
     <div class="Navbar" id="Navbar">
         <div class="navButtons">
-            <a href="/Dashboard/index.html">Dashboard</a>
-            <a href="/Negozi/Negozi.html">Negozi</a>
-            <a href="/Magazzino/magazzino.html">Magazzino</a>
+            <a href="~/Dashboard/IndexDashBoard/@Model.UtenteLoggato.Id">Dashboard</a>
+            <a href="~/Filiali/Index/@Model.UtenteLoggato.Id">Negozi</a>
+            <a href="~/Magazzino/Index/@Model.UtenteLoggato.Id">Magazzino</a>
             <a href="#">Comunicazioni</a>
         </div>
         <a href="#" class="logout">Log Out</a>
@@ -29,7 +31,7 @@
         <div class="infoHeader">
             <img src="~/Immagini/logo.png" alt="Logo Tech Retail SpA" height="200px">
             <div class="Inventory">
-                <h1 style="color: #eb921c;">Roma, Via Napoli in Fiamme</h1>
+                <h1 style="color: #eb921c;">@Model.UtenteLoggato._Filiale.Indirizzo</h1>
             </div>
             <div class="destra">
                 <h1 class="utente" style="color: #eb921c; font-size: 50px;">Inventario</h1>
@@ -52,158 +54,168 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">1</button></td>
-                        <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">Laptop</button></td>
-                        <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">999.99</button></td>
-                        <!--Queste tre portano alla scheda prodotto-->
-                        <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">10</button></td>
-                        <!--Questo porta al form Restock-->
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Mouse</td>
-                        <td>25.50</td>
-                        <td>3</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Tastiera</td>
-                        <td>45.00</td>
-                        <td>8</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Monitor</td>
-                        <td>150.00</td>
-                        <td>2</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Cuffie</td>
-                        <td>80.00</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Stampante</td>
-                        <td>120.00</td>
-                        <td>4</td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>Scanner</td>
-                        <td>75.00</td>
-                        <td>6</td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td>Tablet</td>
-                        <td>300.00</td>
-                        <td>7</td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td>Smartphone</td>
-                        <td>500.00</td>
-                        <td>15</td>
-                    </tr>
-                    <tr>
-                        <td>10</td>
-                        <td>Router</td>
-                        <td>60.00</td>
-                        <td>9</td>
-                    </tr>
-                    <tr>
-                        <td>11</td>
-                        <td>Hard Disk</td>
-                        <td>80.00</td>
-                        <td>12</td>
-                    </tr>
-                    <tr>
-                        <td>12</td>
-                        <td>SSD</td>
-                        <td>100.00</td>
-                        <td>11</td>
-                    </tr>
-                    <tr>
-                        <td>13</td>
-                        <td>RAM</td>
-                        <td>45.00</td>
-                        <td>20</td>
-                    </tr>
-                    <tr>
-                        <td>14</td>
-                        <td>Alimentatore</td>
-                        <td>50.00</td>
-                        <td>8</td>
-                    </tr>
-                    <tr>
-                        <td>15</td>
-                        <td>Case</td>
-                        <td>70.00</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>16</td>
-                        <td>Scheda Madre</td>
-                        <td>150.00</td>
-                        <td>3</td>
-                    </tr>
-                    <tr>
-                        <td>17</td>
-                        <td>Processore</td>
-                        <td>200.00</td>
-                        <td>6</td>
-                    </tr>
-                    <tr>
-                        <td>18</td>
-                        <td>Ventola</td>
-                        <td>25.00</td>
-                        <td>10</td>
-                    </tr>
-                    <tr>
-                        <td>19</td>
-                        <td>Webcam</td>
-                        <td>40.00</td>
-                        <td>7</td>
-                    </tr>
-                    <tr>
-                        <td>20</td>
-                        <td>Microfono</td>
-                        <td>35.00</td>
-                        <td>8</td>
-                    </tr>
-                    <tr>
-                        <td>21</td>
-                        <td>Altoparlanti</td>
-                        <td>55.00</td>
-                        <td>4</td>
-                    </tr>
-                    <tr>
-                        <td>22</td>
-                        <td>Proiettore</td>
-                        <td>250.00</td>
-                        <td>2</td>
-                    </tr>
-                    <tr>
-                        <td>23</td>
-                        <td>Switch</td>
-                        <td>90.00</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>24</td>
-                        <td>Hub USB</td>
-                        <td>20.00</td>
-                        <td>14</td>
-                    </tr>
-                    <tr>
-                        <td>25</td>
-                        <td>Adattatore</td>
-                        <td>15.00</td>
-                        <td>9</td>
-                    </tr>
+                    @foreach ( var p in Model.Prodotti)
+                    {
+                        string id = p["id"];  // Estraggo il valore con la chiave "Id"
+                        string nome = p["nome"];
+                        string prezzo = p["prezzo"];
+                        string quantita = p["quantita"];
+                        <tr>
+                                <td><button class="linkTabella" onclick="window.location.href='@Url.Action("Index", "Prodotto", new { idUtente = Model.UtenteLoggato.Id, idProdotto = @id })'">@id</button></td>
+                                <td><button class="linkTabella" onclick="window.location.href='@Url.Action("Index", "Prodotto", new { idUtente = Model.UtenteLoggato.Id, idProdotto = @id })'">@nome</button></td>
+                                <td><button class="linkTabella" onclick="window.location.href='@Url.Action("Index", "Prodotto", new { idUtente = Model.UtenteLoggato.Id, idProdotto = @id })'">@prezzo</button></td>
+                            <!--Queste tre portano alla scheda prodotto-->
+                            <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">@quantita</button></td>
+                            <!--Questo porta al form Restock-->
+                        </tr>
+                    }
+                    
+<!--                    <tr>
+                         <td>2</td>
+                         <td>Mouse</td>
+                         <td>25.50</td>
+                         <td>3</td>
+                     </tr>
+                     <tr>
+                         <td>3</td>
+                         <td>Tastiera</td>
+                         <td>45.00</td>
+                         <td>8</td>
+                     </tr>
+                     <tr>
+                         <td>4</td>
+                         <td>Monitor</td>
+                         <td>150.00</td>
+                         <td>2</td>
+                     </tr>
+                     <tr>
+                         <td>5</td>
+                         <td>Cuffie</td>
+                         <td>80.00</td>
+                         <td>5</td>
+                     </tr>
+                     <tr>
+                         <td>6</td>
+                         <td>Stampante</td>
+                         <td>120.00</td>
+                         <td>4</td>
+                     </tr>
+                     <tr>
+                         <td>7</td>
+                         <td>Scanner</td>
+                         <td>75.00</td>
+                         <td>6</td>
+                     </tr>
+                     <tr>
+                         <td>8</td>
+                         <td>Tablet</td>
+                         <td>300.00</td>
+                         <td>7</td>
+                     </tr>
+                     <tr>
+                         <td>9</td>
+                         <td>Smartphone</td>
+                         <td>500.00</td>
+                         <td>15</td>
+                     </tr>
+                     <tr>
+                         <td>10</td>
+                         <td>Router</td>
+                         <td>60.00</td>
+                         <td>9</td>
+                     </tr>
+                     <tr>
+                         <td>11</td>
+                         <td>Hard Disk</td>
+                         <td>80.00</td>
+                         <td>12</td>
+                     </tr>
+                     <tr>
+                         <td>12</td>
+                         <td>SSD</td>
+                         <td>100.00</td>
+                         <td>11</td>
+                     </tr>
+                     <tr>
+                         <td>13</td>
+                         <td>RAM</td>
+                         <td>45.00</td>
+                         <td>20</td>
+                     </tr>
+                     <tr>
+                         <td>14</td>
+                         <td>Alimentatore</td>
+                         <td>50.00</td>
+                         <td>8</td>
+                     </tr>
+                     <tr>
+                         <td>15</td>
+                         <td>Case</td>
+                         <td>70.00</td>
+                         <td>5</td>
+                     </tr>
+                     <tr>
+                         <td>16</td>
+                         <td>Scheda Madre</td>
+                         <td>150.00</td>
+                         <td>3</td>
+                     </tr>
+                     <tr>
+                         <td>17</td>
+                         <td>Processore</td>
+                         <td>200.00</td>
+                         <td>6</td>
+                     </tr>
+                     <tr>
+                         <td>18</td>
+                         <td>Ventola</td>
+                         <td>25.00</td>
+                         <td>10</td>
+                     </tr>
+                     <tr>
+                         <td>19</td>
+                         <td>Webcam</td>
+                         <td>40.00</td>
+                         <td>7</td>
+                     </tr>
+                     <tr>
+                         <td>20</td>
+                         <td>Microfono</td>
+                         <td>35.00</td>
+                         <td>8</td>
+                     </tr>
+                     <tr>
+                         <td>21</td>
+                         <td>Altoparlanti</td>
+                         <td>55.00</td>
+                         <td>4</td>
+                     </tr>
+                     <tr>
+                         <td>22</td>
+                         <td>Proiettore</td>
+                         <td>250.00</td>
+                         <td>2</td>
+                     </tr>
+                     <tr>
+                         <td>23</td>
+                         <td>Switch</td>
+                         <td>90.00</td>
+                         <td>5</td>
+                     </tr>
+                     <tr>
+                         <td>24</td>
+                         <td>Hub USB</td>
+                         <td>20.00</td>
+                         <td>14</td>
+                     </tr>
+                     <tr>
+                         <td>25</td>
+                         <td>Adattatore</td>
+                         <td>15.00</td>
+                         <td>9</td>
+                     </tr>
+
+-->
                 </tbody>
             </table>
         </div>

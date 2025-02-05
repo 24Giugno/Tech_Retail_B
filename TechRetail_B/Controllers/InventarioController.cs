@@ -6,15 +6,22 @@ namespace TechRetail_B.Controllers
 {
     public class InventarioController : Controller
     {
-        public IActionResult Inventario(int id)
+
+        public IActionResult Index(int idUtente)
         {
+            Entity e = DAOUtenti.GetInstance().FindRecord(idUtente);
+            Utente i = (Utente)e;
 
-            Entity u = DAOUtenti.GetInstance().FindRecord(id);
+            var inventario = DAOProdotti.GetInstance().ListaInventario(i._Filiale.Id);
 
-            Utente utente = (Utente)u;
-            var inventario = DAOProdotti.GetInstance().ListaInventario(utente._Filiale.Id);
+            var viewModel = new InventarioViewModel
+            {
+                UtenteLoggato = i,
+                Prodotti = inventario
+            };
 
-            return View("Inventario", inventario);
+            return View("Inventario",viewModel);
+
         }
     }
 }

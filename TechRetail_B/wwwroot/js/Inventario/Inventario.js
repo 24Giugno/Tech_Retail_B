@@ -2,7 +2,7 @@ function searchProducts() {
     let input = document.getElementById('searchInput');
     let filter = input.value.toLowerCase();
     let rows = document.querySelectorAll("#inventoryTable tbody tr");
-
+        
     rows.forEach(row => {
         let productName = row.cells[1].textContent.toLowerCase();
         if (filter === "") {
