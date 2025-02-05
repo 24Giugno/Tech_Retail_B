@@ -28,6 +28,7 @@ namespace TechRetail_B.Controllers
             Utente i = (Utente)e;
 
             List<Entity> listaOrdini = DAOOrdini.GetInstance().OrdiniPerFiliale(i);
+            List<Entity> feedbacks = DAOFeedbacks.GetInstance().FeedbacksPerFiliale(i);
 
             var viewModel2 = new OrdiniViewModel
             {
@@ -36,7 +37,8 @@ namespace TechRetail_B.Controllers
                 PercentualeLoco = DAOOrdini.GetInstance().CalcoloPercentualeLoco(listaOrdini),
                 FatturatoGiornaliero = DAOOrdini.GetInstance().FatturatoGiornaliero(listaOrdini),
                 GraficoLineaLoco = DAOOrdini.GetInstance().GraficoLineaLoco(listaOrdini),
-                GraficoLineaOnline = DAOOrdini.GetInstance().GraficoLineaOnline(listaOrdini)
+                GraficoLineaOnline = DAOOrdini.GetInstance().GraficoLineaOnline(listaOrdini),
+                Feedbacks = feedbacks
             };
             return View("Index",viewModel2);
         }
@@ -47,7 +49,7 @@ namespace TechRetail_B.Controllers
             Utente i = (Utente)e;
 
             List<Entity> listaOrdini = DAOOrdini.GetInstance().OrdiniPerFiliale(i);
-
+            List<Entity> feedbacks = DAOFeedbacks.GetInstance().FeedbacksPerFiliale(i);
             var viewModel3 = new OrdiniViewModel
             {
                 UtenteLoggato = i,
@@ -55,7 +57,8 @@ namespace TechRetail_B.Controllers
                 PercentualeLoco = DAOOrdini.GetInstance().CalcoloPercentualeLoco(listaOrdini),
                 FatturatoGiornaliero = DAOOrdini.GetInstance().FatturatoGiornaliero(listaOrdini),
                 GraficoLineaLoco = DAOOrdini.GetInstance().GraficoLineaLoco(listaOrdini),
-                GraficoLineaOnline = DAOOrdini.GetInstance().GraficoLineaOnline(listaOrdini)
+                GraficoLineaOnline = DAOOrdini.GetInstance().GraficoLineaOnline(listaOrdini),
+                Feedbacks = feedbacks
             };
             return View("Index", viewModel3);
         }

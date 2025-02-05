@@ -29,7 +29,7 @@ namespace TechRetail_B.Models
            {
                {"@Stelle",((Feedback)entity).Stelle},
                {"@Commento",((Feedback)entity).Commento.Replace("'","''")},
-               {"@Stato",((Feedback)entity).Stato.Replace("'","''")}, 
+               {"@Stato",((Feedback)entity).Stato.Replace("'","''")},
                {"@idOrdineFK",((Feedback)entity)._Ordine.Id},
                {"@idUtenteFK",((Feedback)entity)._Ordine.Id},
            };
@@ -86,12 +86,12 @@ namespace TechRetail_B.Models
 
                 if (r.ContainsKey("idordinefk") && int.TryParse(r["idordinefk"], out int OrdineId))
                 {
-                    Entity Ordine = DAOProdotti.GetInstance().FindRecord(OrdineId);
+                    Entity Ordine = DAOOrdini.GetInstance().FindRecord(OrdineId);
                     f._Ordine = (Ordine)Ordine;
                 }
                 if (r.ContainsKey("idutentefk") && int.TryParse(r["idutentefk"], out int UtenteId))
                 {
-                    Entity Utente = DAOFiliali.GetInstance().FindRecord(UtenteId);
+                    Entity Utente = DAOUtenti.GetInstance().FindRecord(UtenteId);
                     f._Utente = (Utente)Utente;
                 }
 
@@ -117,7 +117,21 @@ namespace TechRetail_B.Models
                                  "WHERE id = @Id ";
             return db.UpdateDb(query, parametri);
         }
-#endregion
+        #endregion
+
+        #region METODI
+        public List<Entity> FeedbacksPerFiliale(Utente u)
+        {
+          List<Entity> lista = DAOFeedbacks.GetInstance().GetRecords();
+          
+            IEnumerable<Entity> query = from Feedback f in lista
+                                        where f._Ordine._FilialePartenza.Id == u._Filiale.Id
+                                        select f;
+            return query.ToList();
+        }
+
+        
+        #endregion
 
     }
 }

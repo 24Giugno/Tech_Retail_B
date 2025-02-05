@@ -72,8 +72,29 @@ public class DAOOrdini : IDAO
         if (ris == null)
             return null;
 
-        Entity f = new Stocks();
+        Ordine f = new Ordine();
         f.TypeSort(ris);
+
+        if (ris.ContainsKey("idutentefk") && int.TryParse(ris["idprodottofk"], out int UtenteId))
+        {
+            Entity Utente = DAOUtenti.GetInstance().FindRecord(UtenteId);
+            f._Utente = (Utente)Utente;
+        }
+        if (ris.ContainsKey("idprodottofk") && int.TryParse(ris["idprodottofk"], out int ProdottoId))
+        {
+            Entity Prodotto = DAOProdotti.GetInstance().FindRecord(ProdottoId);
+            f._Prodotto = (Prodotto)Prodotto;
+        }
+        if (ris.ContainsKey("idfilialepartenzafk") && int.TryParse(ris["idfilialepartenzafk"], out int FilialePartenzaId))
+        {
+            Entity FilialePartenza = DAOFiliali.GetInstance().FindRecord(FilialePartenzaId);
+            f._FilialePartenza = (Filiale)FilialePartenza;
+        }
+        if (ris.ContainsKey("idfilialearrivofk") && int.TryParse(ris["idfilialearrivofk"], out int FilialeArrivoId))
+        {
+            Entity FilialeArrivo = DAOFiliali.GetInstance().FindRecord(FilialeArrivoId);
+            f._FilialeArrivo = (Filiale)FilialeArrivo;
+        }
 
         return f;
     }

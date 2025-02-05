@@ -1,6 +1,6 @@
-﻿
+﻿using MSSTU.DB.Utility;
 
-    namespace TechRetail_B.Models
+namespace TechRetail_B.Models
     {
         public class OrdiniViewModel
         {
@@ -9,6 +9,7 @@
             public int OrdiniInCorso { get; set; }
             public double PercentualeLoco { get; set; }
             public double FatturatoGiornaliero { get; set; }
+            public List<Entity> Feedbacks { get; set; }
             public Dictionary<DateTime, int> GraficoLineaLoco { get; set; }
             public Dictionary<DateTime, int> GraficoLineaOnline { get; set; }
             // Aggiungi altre proprietà se necessario
