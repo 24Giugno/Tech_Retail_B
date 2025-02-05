@@ -20,31 +20,27 @@ namespace TechRetail_B.Controllers
                 Prodotti = inventario
             };
 
-
-            return View("Magazzino",viewModel);
+            return View("Magazzino", viewModel);
         }
 
-     
+        [HttpPost]
+        public IActionResult CercaProdottiLinq(int Id, string parola)
+        {
+            Entity e = DAOUtenti.GetInstance().FindRecord(Id);
+            Utente i = (Utente)e;
 
-        //[HttpGet]
-        //public IActionResult CercaProdottiLinq(string parola )
-        //{
-        //    List<Entity> list = DAOProdotti.GetInstance().GetRecords();
+            // Esegui la query SQL per cercare i prodotti simili
+            var prodottiFiltrati = DAOProdotti.GetInstance().CercaProdotti(Id, parola);
 
-        //    var query = from Prodotto prodotto in list
-        //                where prodotto.Nome.Contains(parola)
-        //                select prodotto;
-            
-        //    List <Prodotto> prodottiCercati = query.ToList();
+            var viewModel = new MagazzinoViewModel
+            {
+                UtenteLoggato = i,
+                Prodotti = prodottiFiltrati
+            };
 
-        //    return View("Magazzino",prodottiCercati);
-        //}
-
-
-
-
-
-
-
+            return View("Magazzino", viewModel);
+        }
     }
 }
+
+

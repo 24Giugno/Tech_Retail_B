@@ -34,8 +34,16 @@
                 <h1 style="color: #eb921c;">@Model.UtenteLoggato._Filiale.Indirizzo</h1>
             </div>
             <div class="destra">
-                <h1 class="utente" style="color: #eb921c; font-size: 50px;">Inventario</h1>
-                <input type="text" id="searchInput" placeholder="Cerca prodotto..." onkeyup="searchProducts()">
+                <form method="get" action="@Url.Action("CercaProdotti", "Inventario")">
+                    <input type="hidden" name="idUtente" value="@Model.UtenteLoggato.Id">
+                    <input type="text" name="termine" id="searchInput" placeholder="Cerca prodotto...">
+                    <button type="submit">🔍</button>
+                </form>
+
+
+
+                <!-- <h1 class="utente" style="color: #eb921c; font-size: 50px;">Inventario</h1>
+                <!--<input type="text" id="searchInput" placeholder="Cerca prodotto..." onkeyup="searchProducts()">
             </div>
         </div>
     </header>
