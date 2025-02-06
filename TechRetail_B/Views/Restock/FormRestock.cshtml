@@ -1,6 +1,6 @@
 ﻿@using TechRetail_B.Models
 @using Newtonsoft.Json
-@model TechRetail_B.Models.OrdiniViewModel
+@model TechRetail_B.Models.RestockViewModel
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -43,23 +43,32 @@
     <div class="container">
         <div class="form-container">
             <h2>Form di Restock</h2>
-            <form action="#" method="post"onsubmit="return validaRestock()">
-                <label for="productName">Nome del Prodotto</label>
-                <input type="text" id="Nome" name="Nome" required>
 
-                <label for="quantity">Quantità </label>
-                <input type="number" id="quantita" name="quantita" required>
 
-                <label for="orderDate">Data di Ordine</label>
-                <input type="date" id="data" name="Data" required>
+        <form action="/Restock/Create" method="post">
+            <div>
+                <label>Nome Prodotto:</label>
+                <input type="text" value="@Model.ProdottoSelezionato.Nome" readonly />
+            </div>
+            <div>
+                <label>Descrizione:</label>
+                <input type="text" value="@Model.ProdottoSelezionato.Descrizione" readonly />
+            </div>
+            <div>
+                <label>Prezzo:</label>
+                <input type="text" value="@Model.ProdottoSelezionato.Prezzo" readonly />
+            </div>
+                <div>
+                    <label>Quantità:</label>
+                    <input type="number" name="quantita" required />
+                </div>
+            <!-- Passa l'ID del prodotto e l'ID dell'admin -->
+            <input type="hidden" name="idProdotto" value="@Model.ProdottoSelezionato.Id" />
+            <input type="hidden" name="idUtente" value="@Model.UtenteLoggato.Id" />
 
-                <label for="orderDate">Data di Arrivo</label>
-                <input type="date" id="dataArrivo" name="DataArrivo" required>
+            <button type="submit">Invia Restock</button>
+        </form>
 
-                <p>Indirizzo di consegna: #</p>
-
-                <button type="submit">Invia</button>
-            </form>
         </div>
     </div>
     <script src="~/js/Restock/Index.js"></script>
