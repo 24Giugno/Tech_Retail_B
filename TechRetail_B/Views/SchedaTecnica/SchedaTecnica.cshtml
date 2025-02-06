@@ -39,17 +39,7 @@
             <h1 class="utente" style="color: #eb921c; font-size: 25px;">@Model.UtenteLoggato.Nome @Model.UtenteLoggato.Cognome</h1>
         </div>
     </header>
-    <!-- scheda tecnica-->
-    @if (Model.UtenteLoggato.Ruolo == "admin")
-    {
-        <form method="get" action="@Url.Action("Index", "Restock")">
-            <input type="hidden" name="idUtente" value="@Model.UtenteLoggato.Id" />
-            <input type="hidden" name="prodottoId" value="@Model.Prodotto.Id" />
-            <input type="hidden" name="nome" value="@Model.Prodotto.Nome" />
-            <input type="hidden" name="prezzo" value="@Model.Prodotto.Prezzo" />
-            <button type="submit" class="restock-btn">Restock</button>
-        </form>
-    }
+   
 
     <div style="display: flex;justify-content: center;">
         <div class="container">
@@ -76,6 +66,17 @@
             </div>
         </div>
     </div>
+    <!-- scheda tecnica-->
+    @if (Model.UtenteLoggato.Ruolo == "admin")
+    {
+        <form method="get" action="@Url.Action("Index", "Restock")">
+            <input type="hidden" name="idUtente" value="@Model.UtenteLoggato.Id" />
+            <input type="hidden" name="prodottoId" value="@Model.Prodotto.Id" />
+            <input type="hidden" name="nome" value="@Model.Prodotto.Nome" />
+            <input type="hidden" name="prezzo" value="@Model.Prodotto.Prezzo" />
+            <button type="submit" class="restock-btn">Restock</button>
+        </form>
+    }
     <script src="~/js/SchedaTecnica/index.js"></script>
 </body>
 </html>

@@ -195,3 +195,8 @@ html, body {
 .product-details ul li {
     margin-bottom: 5px;
 }
+
+.restock-btn {
+    display: block;
+    margin: 20px auto; /* Centra orizzontalmente */
+}
