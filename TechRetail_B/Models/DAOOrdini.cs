@@ -187,8 +187,9 @@ public class DAOOrdini : IDAO
     public double FatturatoGiornaliero(List<Entity> listaOrdini)
     {
         double query = (from Ordine o in listaOrdini
-                    where o.Data.Date == DateTime.Today
-                    select o._Prodotto.Prezzo).Sum();
+                        where o.Data.Date == DateTime.Today && o.Restock == false
+                        select o._Prodotto.Prezzo).Sum();
+
 
         return query;
     }

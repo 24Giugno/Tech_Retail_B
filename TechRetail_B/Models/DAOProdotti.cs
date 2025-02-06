@@ -131,6 +131,21 @@ namespace TechRetail_B.Models
             return db.ReadDb(query);
         }
 
+        public List<Dictionary<string, string>> ListaMagazzino(int id)
+        {
+            var parametro = new Dictionary<string, object>
+            {
+                {"@Id", id }
+            };
+
+            string query = "SELECT prodotti.id as Id, Nome, prezzo, quantita " +
+                          "FROM Prodotti JOIN stocks " +
+                          "ON Prodotti.id = Stocks.idProdottoFK " +
+                          "WHERE Stocks.idFilialeFK= @Id";
+
+            return db.ReadDb(query, parametro);
+        }
+
         #endregion
 
 

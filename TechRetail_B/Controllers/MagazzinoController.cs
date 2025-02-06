@@ -7,12 +7,13 @@ namespace TechRetail_B.Controllers
 {
     public class MagazzinoController : Controller
     {
+        static int IdMagazzino = 1;
         public IActionResult Index(int Id)
         {
             Entity e = DAOUtenti.GetInstance().FindRecord(Id);
             Utente i = (Utente)e;
 
-            var inventario = DAOProdotti.GetInstance().ListaMagazzino();
+            var inventario = DAOProdotti.GetInstance().ListaMagazzino(IdMagazzino);
 
             var viewModel = new MagazzinoViewModel
             {
@@ -30,7 +31,7 @@ namespace TechRetail_B.Controllers
             Utente i = (Utente)e;
 
             // Esegui la query SQL per cercare i prodotti simili
-            var prodottiFiltrati = DAOProdotti.GetInstance().CercaProdotti(Id, parola);
+            var prodottiFiltrati = DAOProdotti.GetInstance().CercaProdotti(IdMagazzino, parola);
 
             var viewModel = new MagazzinoViewModel
             {
