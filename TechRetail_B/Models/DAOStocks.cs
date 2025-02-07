@@ -1,4 +1,5 @@
 ﻿using MSSTU.DB.Utility;
+using System.Reflection.Metadata;
 
 namespace TechRetail_B.Models
 {
@@ -113,6 +114,48 @@ namespace TechRetail_B.Models
             return db.UpdateDb(query, parametri);
         }
 
+        public Entity FindStock(int IdProdotto, int IdFiliale)
+        {
+            var parametri = new Dictionary<string, object>
+            {
+                {"@IdProdotto",IdProdotto},
+                {"@IdFiliale",IdFiliale}
+
+            };
+            const string query = "SELECT * FROM stocks WHERE Stocks.idFilialeFK = @IdFiliale AND Stocks.idProdottoFK = @IdProdotto;";
+
+            var ris = db.ReadOneDb(query, parametri);
+            if (ris == null)
+                return null;
+
+            Stocks f = new Stocks();
+            f.TypeSort(ris);
+
+            if (ris.ContainsKey("idprodottofk") && int.TryParse(ris["idprodottofk"], out int ProdottoId))
+             {
+                Entity Prodotto = DAOProdotti.GetInstance().FindRecord(ProdottoId);
+                f._Prodotto = (Prodotto)Prodotto;
+             }
+            if (ris.ContainsKey("idfilialefk") && int.TryParse(ris["idfilialefk"], out int FilialeId))
+             {
+                Entity Filiale = DAOFiliali.GetInstance().FindRecord(FilialeId);
+                f._Filiale = (Filiale)Filiale;
+             }
+            return f;
+        }
+
+        public bool EliminaStock(Stocks stock)
+        {
+            var parametri = new Dictionary<string, object>
+            {
+                { "@Id", stock.Id },
+                { "@IdProdotto", stock._Prodotto.Id },
+                { "@IdFiliale", stock._Filiale.Id }
+            };
+            const string query = "DELETE FROM stocks WHERE stocks.id = @Id AND Stocks.idFilialeFK = @IdFiliale AND Stocks.idProdottoFK = @IdProdotto;";
+
+            return db.UpdateDb(query, parametri);
+        }
     }
 }
 

@@ -30,7 +30,12 @@
         <div class="infoHeader">
             <img src="~/Immagini/logo.png" alt="Logo Tech Retail SpA" height="200px">
             <h1 class="utente" style="color: #eb921c; font-size: 50px;">Filiali </h1>
-            <input type="text" id="searchInput" placeholder="Cerca filiale..." onkeyup="searchProducts()">
+            <form method="get" action="@Url.Action("Index", "Filiali")">
+                <input type="hidden" name="id" value="@Model.UtenteLoggato.Id">
+                <input type="text" name="searchTerm" placeholder="Cerca filiale..." value="@Context.Request.Query["searchTerm"]">
+                <button type="submit">🔍</button>
+            </form>
+
         </div>
     </header>
 
