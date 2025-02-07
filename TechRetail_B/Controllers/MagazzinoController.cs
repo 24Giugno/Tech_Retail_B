@@ -12,8 +12,9 @@ namespace TechRetail_B.Controllers
         {
             Entity e = DAOUtenti.GetInstance().FindRecord(Id);
             Utente i = (Utente)e;
+            List<Entity> ordini = DAOOrdini.GetInstance().OrdiniPerFiliale(i);
 
-            var inventario = DAOProdotti.GetInstance().ListaMagazzino(IdMagazzino);
+            var inventario = DAOProdotti.GetInstance().ListaMagazzino(i.Id);
 
             var viewModel = new MagazzinoViewModel
             {
@@ -41,6 +42,53 @@ namespace TechRetail_B.Controllers
 
             return View("Magazzino", viewModel);
         }
+        public IActionResult ModificaQuantita(int idProdotto, int idFiliale)
+        {
+            var stock = DAOStocks.GetInstance().FindStock(idProdotto, idFiliale);
+            if (stock == null)
+            {
+                return NotFound("Stock non trovato.");
+            }
+            Stocks stockAttuale = (Stocks)stock;
+            var viewModel = new ModificaQuantitaViewModel
+            {
+                IdProdotto = idProdotto,
+                IdFiliale = idFiliale,
+                QuantitaAttuale = stockAttuale.Quantita
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult SalvaQuantita(int idProdotto, int idFiliale, int quantita)
+        {
+            var stock = DAOStocks.GetInstance().FindStock(idProdotto, idFiliale);
+            if (stock == null)
+            {
+                return NotFound("Stock non trovato.");
+            }
+            Stocks stockAttuale = (Stocks)stock;
+            stockAttuale.Quantita = quantita;
+            DAOStocks.GetInstance().UpdateRecord(stock);  // Metodo per aggiornare il database
+
+            return RedirectToAction("Index", new { id = idFiliale });
+        }
+
+        [HttpPost]
+        public IActionResult EliminaStock(int idProdotto, int idFiliale) 
+        {
+            var stock = DAOStocks.GetInstance().FindStock(idProdotto, idFiliale);
+            if (stock == null)
+            {
+                return NotFound("Stock non trovato.");
+            }
+            Stocks stockAttuale = (Stocks)stock;
+            DAOStocks.GetInstance().EliminaStock(stockAttuale);
+
+            return RedirectToAction("Index", new { id = idFiliale });
+        }
+
     }
 }
 
