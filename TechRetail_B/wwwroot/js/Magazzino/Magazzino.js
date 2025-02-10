@@ -1,43 +1,43 @@
-//function searchProducts() {
-//    let input = document.getElementById('searchInput');
-//    let filter = input.value.toLowerCase();
-//    let rows = document.querySelectorAll("#inventoryTable tbody tr");
-
-//    rows.forEach(row => {
-//        let productName = row.cells[1].textContent.toLowerCase();
-//        if (filter === "") {
-//            // Se il campo di input è vuoto, rimuovi la classe highlight da tutte le righe
-//            row.classList.remove("highlight");
-//        } else if (productName.includes(filter)) {
-//            // Se il nome del prodotto include il filtro, aggiungi la classe highlight
-//            row.classList.add("highlight");
-//        } else {
-//            // Altrimenti, rimuovi la classe highlight
-//            row.classList.remove("highlight");
-//        }
-//    });
-//}
 function searchProducts() {
-    let query = document.getElementById("searchInput").value;
+    let input = document.getElementById('searchInput');
+    let filter = input.value.toLowerCase();
+    let rows = document.querySelectorAll("#inventoryTable tbody tr");
 
-    fetch(`~/Magazzino/CercaProdotti?query=${encodeURIComponent(query)}`)
-        .then(response => response.json())
-        .then(data => {
-            let tableBody = document.querySelector("#inventoryTable tbody");
-            tableBody.innerHTML = ""; // Svuota la tabella
-
-            data.forEach(prodotto => {
-                let row = `<tr>
-                    <td>${prodotto.id}</td>
-                    <td>${prodotto.nome}</td>
-                    <td>${prodotto.prezzo.toFixed(2)}</td>
-                    <td>${prodotto.quantita}</td>
-                </tr>`;
-                tableBody.innerHTML += row;
-            });
-        })
-        .catch(error => console.error("Errore nella ricerca:", error));
+    rows.forEach(row => {
+        let productName = row.cells[1].textContent.toLowerCase();
+        if (filter === "") {
+            // Se il campo di input è vuoto, rimuovi la classe highlight da tutte le righe
+            row.classList.remove("highlight");
+        } else if (productName.includes(filter)) {
+            // Se il nome del prodotto include il filtro, aggiungi la classe highlight
+            row.classList.add("highlight");
+        } else {
+            // Altrimenti, rimuovi la classe highlight
+            row.classList.remove("highlight");
+        }
+    });
 }
+//function searchProducts() {
+//    let query = document.getElementById("searchInput").value;
+
+//    fetch(`~/Magazzino/CercaProdotti?query=${encodeURIComponent(query)}`)
+//        .then(response => response.json())
+//        .then(data => {
+//            let tableBody = document.querySelector("#inventoryTable tbody");
+//            tableBody.innerHTML = ""; // Svuota la tabella
+
+//            data.forEach(prodotto => {
+//                let row = `<tr>
+//                    <td>${prodotto.id}</td>
+//                    <td>${prodotto.nome}</td>
+//                    <td>${prodotto.prezzo.toFixed(2)}</td>
+//                    <td>${prodotto.quantita}</td>
+//                </tr>`;
+//                tableBody.innerHTML += row;
+//            });
+//        })
+//        .catch(error => console.error("Errore nella ricerca:", error));
+//}
 
 
 document.addEventListener("DOMContentLoaded", function() {

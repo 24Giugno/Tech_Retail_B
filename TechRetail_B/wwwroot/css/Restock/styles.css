@@ -23,6 +23,7 @@ html, body {
     flex-direction: column;
     border-left: 1px solid #ffffff11;
     transition: right 0.3s ease-in-out;
+    justify-content: space-between;
 }
 
 .Navbar.open {

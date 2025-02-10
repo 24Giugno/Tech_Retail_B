@@ -10,20 +10,21 @@ body, h1, h2, h3, h4, h5, h6 { font-family: "Lato", sans-serif; }
         background-color: #bd7d28;
     }
 
-    .Navbar {
-        width: 250px;
-        background-color: #3b3b3b;
-        padding: 20px;
-        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-        position: fixed;
-        right: -250px; /* Inizialmente nascosta */
-        top: 0;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        border-left: 1px solid #ffffff11;
-        transition: right 0.3s ease-in-out;
-    }
+.Navbar {
+    width: 250px;
+    background-color: #3b3b3b;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    position: fixed;
+    right: -250px; /* Inizialmente nascosta */
+    top: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid #ffffff11;
+    transition: right 0.3s ease-in-out;
+    justify-content: space-between;
+}
 
     .Navbar.open {
         right: 0; /* Mostra la navbar */

@@ -12,9 +12,8 @@ namespace TechRetail_B.Controllers
         {
             Entity e = DAOUtenti.GetInstance().FindRecord(Id);
             Utente i = (Utente)e;
-            List<Entity> ordini = DAOOrdini.GetInstance().OrdiniPerFiliale(i);
 
-            var inventario = DAOProdotti.GetInstance().ListaMagazzino(i.Id);
+            var inventario = DAOProdotti.GetInstance().ListaInventario(1);
 
             var viewModel = new MagazzinoViewModel
             {

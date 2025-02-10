@@ -32,7 +32,7 @@ namespace TechRetail_B.Models
                {"@idUtenteFK",((Messaggio)entity)._Utente.Id},
            };
 
-            const string query = "INSERT INTO Feedbacks                            (Contenuto,Stato,idUtenteFK) " +
+            const string query = "INSERT INTO Comunicazioni (Contenuto,DataOra,idUtenteFK) " +
                                  "VALUES (@Contenuto,@Dataora,@idUtenteFK)";
 
             return db.UpdateDb(query, parametri);
@@ -44,7 +44,7 @@ namespace TechRetail_B.Models
             {
                 { "@id", recordId }
             };
-            const string query = "DELETE FROM Messaggi WHERE id = @id";
+            const string query = "DELETE FROM Comunicazioni WHERE id = @id";
 
             return db.UpdateDb(query, parametro);
         }
@@ -56,7 +56,7 @@ namespace TechRetail_B.Models
                 { "@id", recordId }
             };
 
-            const string query = "SELECT * FROM Messaggi WHERE id = @id";
+            const string query = "SELECT * FROM Comunicazioni WHERE id = @id";
 
             var ris = db.ReadOneDb(query, parametro);
             if (ris == null)
@@ -75,7 +75,7 @@ namespace TechRetail_B.Models
 
         public List<Entity> GetRecords()
         {
-            const string query = "SELECT * FROM Messaggi";
+            const string query = "SELECT * FROM Comunicazioni";
             List<Entity> entities = [];
             var ris = db.ReadDb(query);
             if (ris == null)
@@ -107,7 +107,7 @@ namespace TechRetail_B.Models
                {"@idUtenteFK",((Messaggio)entity)._Utente.Id},
            };
 
-            const string query = "UPDATE Messaggi SET " +
+            const string query = "UPDATE Comunicazioni SET " +
                 "Contenuto = @Contenuto, " +
                 "Dataora = @Dataora, " +
                 "idUtenteFk = @idUtenteFk " +

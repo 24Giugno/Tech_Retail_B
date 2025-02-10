@@ -186,12 +186,13 @@ public class DAOOrdini : IDAO
 
     public double FatturatoGiornaliero(List<Entity> listaOrdini)
     {
+        // Calcolo del fatturato giornaliero
         double query = (from Ordine o in listaOrdini
                         where o.Data.Date == DateTime.Today && o.Restock == false
                         select o._Prodotto.Prezzo).Sum();
 
-
-        return query;
+        // Approssimazione del risultato a un numero intero
+        return Math.Round(query); // Arrotonda il valore al numero intero più vicino
     }
 
     public Dictionary<DateTime,int> GraficoLineaLoco(List<Entity> listaOrdini)
@@ -231,6 +232,16 @@ public class DAOOrdini : IDAO
         IEnumerable<Entity> query = from Ordine o in lista
                     where o._FilialePartenza.Id == u._Filiale.Id
                     select o;
+        return query.ToList();
+    }
+
+    public List<Entity> OrdiniPerFiliale(int id)
+    {
+        List<Entity> lista = DAOOrdini.GetInstance().GetRecords();
+
+        IEnumerable<Entity> query = from Ordine o in lista
+                                    where o._FilialePartenza.Id == id
+                                    select o;
         return query.ToList();
     }
 

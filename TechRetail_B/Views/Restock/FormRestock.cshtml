@@ -24,9 +24,9 @@
             <a href="~/Dashboard/IndexDashBoard/@Model.UtenteLoggato.Id">Dashboard</a>
             <a href="~/Filiali/Index/@Model.UtenteLoggato.Id">Negozi</a>
             <a href="~/Magazzino/Index/@Model.UtenteLoggato.Id">Magazzino</a>
-            <a href="#">Comunicazioni</a>
+            <a href="~/Comunicazioni/Index/@Model.UtenteLoggato.Id">Comunicazioni</a>
         </div>
-        <a href="~/Login/Logout"> Log Out</a>
+        <a href="~/Login/Logout" class="logout"> Log Out</a>
     </div>
 
     <!-- Header -->
@@ -37,7 +37,7 @@
                 <h1 style="color: #eb921c;"></h1>
                 <button class onclick="window.location.href='/Inventario/Inventario.html'">Vai all'Inventario</button>
             </div>
-            <h1 class="utente" style="color: #eb921c; font-size: 25px;">Matteo Sottile <br> 32 Anni</h1>
+            <h1 class="utente" style="color: #eb921c; font-size: 25px;">@Model.UtenteLoggato.Nome @Model.UtenteLoggato.Cognome</h1>
         </div>
     </header>
     <div class="container">

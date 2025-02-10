@@ -30,7 +30,7 @@ namespace TechRetail_B.Models
            {
                {"@ProdottoId",((Stocks)entity)._Prodotto.Id},
                {"@FilialeId",((Stocks)entity)._Filiale.Id},
-               {"@Quantita",((Stocks)entity).Quantita},   
+               {"@Quantita",((Stocks)entity).Quantita},
            };
 
             const string query = "INSERT INTO stocks (idProdottoFK,idFilialeFK,quantita) " +
@@ -132,15 +132,15 @@ namespace TechRetail_B.Models
             f.TypeSort(ris);
 
             if (ris.ContainsKey("idprodottofk") && int.TryParse(ris["idprodottofk"], out int ProdottoId))
-             {
+            {
                 Entity Prodotto = DAOProdotti.GetInstance().FindRecord(ProdottoId);
                 f._Prodotto = (Prodotto)Prodotto;
-             }
+            }
             if (ris.ContainsKey("idfilialefk") && int.TryParse(ris["idfilialefk"], out int FilialeId))
-             {
+            {
                 Entity Filiale = DAOFiliali.GetInstance().FindRecord(FilialeId);
                 f._Filiale = (Filiale)Filiale;
-             }
+            }
             return f;
         }
 
@@ -155,8 +155,10 @@ namespace TechRetail_B.Models
             const string query = "DELETE FROM stocks WHERE stocks.id = @Id AND Stocks.idFilialeFK = @IdFiliale AND Stocks.idProdottoFK = @IdProdotto;";
 
             return db.UpdateDb(query, parametri);
+
         }
+
+        #endregion
     }
 }
 
-#endregion

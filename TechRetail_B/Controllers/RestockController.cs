@@ -14,12 +14,12 @@ namespace TechRetail_B.Controllers
             
         //    return View("FormRestock",u);
         //}
-        public IActionResult Index(int idUtente, int prodottoId, string nome, float prezzo)
+        public IActionResult Index(int idUtente, int idProdotto, string nome, float prezzo)
         {
             Entity u = DAOUtenti.GetInstance().FindRecord(idUtente);
             Utente utente = (Utente)u;
 
-            Entity p = DAOProdotti.GetInstance().FindRecord(prodottoId);
+            Entity p = DAOProdotti.GetInstance().FindRecord(idProdotto);
             Prodotto prodotto = (Prodotto)p;
             var viewModel = new RestockViewModel
             {
@@ -76,6 +76,13 @@ namespace TechRetail_B.Controllers
                     UtenteLoggato = utente,
                     Prodotti = inventario
                 };
+
+                var Comunicazione = new Messaggio();
+                Comunicazione.Dataora = DateTime.Now;
+                Comunicazione.Contenuto = $"L'utente {utente.Nome} {utente.Cognome} ha richiesto un restock di {prodotto} il giorno {DateTime.Now}";
+                Comunicazione._Utente = utente;
+
+                DAOMessaggi.GetInstance().CreateRecord(Comunicazione);
 
                 return RedirectToAction("IndexLogin", "DashBoard", utente);
             }

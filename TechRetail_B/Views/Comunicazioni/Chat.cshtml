@@ -22,9 +22,9 @@
             <a href="~/Dashboard/IndexDashBoard/@Model.UtenteLoggato.Id">Dashboard</a>
             <a href="~/Filiali/Index/@Model.UtenteLoggato.Id">Negozi</a>
             <a href="~/Magazzino/Index/@Model.UtenteLoggato.Id">Magazzino</a>
-            <a href="#">Comunicazioni</a>
+            <a href="~/Comunicazioni/Index/@Model.UtenteLoggato.Id">Comunicazioni</a>
         </div>
-        <a href="~/Login/Logout"> Log Out</a>    
+       <a href="~/Login/Logout" class="logout"> Log Out</a>  
     </div>
 
     <!-- Header -->
@@ -75,8 +75,12 @@
                 }
             </div>
             <div class="BoxMess">
-                <form class="Messagio" action="#" method="post" onsubmit="return inviaMessaggio(idUtente)">
-                    <input id="inputMessage" type="text" placeholder="Scrivi un messaggio...">
+                <form class="Messagio" action="/Comunicazioni/NuovaComunicazione" method="post" onsubmit="return validaMessaggio()">
+                    <input id="inputMessage" type="text" name="contenuto" placeholder="Scrivi un messaggio...">
+
+                    
+                    <input type="hidden" name="idUtente" value="@Model.UtenteLoggato.Id" />
+
                     <button id="sendMessageBtn" type="submit">
                         <i class="fa fa-paper-plane"></i>
                     </button>

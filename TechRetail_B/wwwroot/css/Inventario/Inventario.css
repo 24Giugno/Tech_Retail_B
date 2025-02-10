@@ -23,6 +23,7 @@ body, h1, h2, h3, h4, h5, h6 { font-family: "Lato", sans-serif; }
         flex-direction: column;
         border-left: 1px solid #ffffff11;
         transition: right 0.3s ease-in-out;
+        justify-content:space-between;
     }
 
     .Navbar.open {
@@ -93,7 +94,6 @@ body, h1, h2, h3, h4, h5, h6 { font-family: "Lato", sans-serif; }
     }
     .infoHeader {
         display: flex;
-        flex-direction: column;
         justify-content: space-between;
         align-items: center;
     }
