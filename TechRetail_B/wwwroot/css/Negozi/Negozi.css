@@ -192,3 +192,15 @@ body, h1, h2, h3, h4, h5, h6 { font-family: "Lato", sans-serif; }
         color:#ddd;
         text-align: left;
     }
+
+/* Stile per evidenziare le righe */
+.highlight-row {
+    background-color:#2b56bd; /* Azzurro chiaro */
+    color: white; /* Testo bianco per migliorare la leggibilità */
+}
+
+    /* Opzionale: Effetto hover per le righe evidenziate */
+    .highlight-row:hover {
+        background-color: #1e90ff; /* Azzurro più scuro al passaggio del mouse */
+        cursor: pointer;
+    }

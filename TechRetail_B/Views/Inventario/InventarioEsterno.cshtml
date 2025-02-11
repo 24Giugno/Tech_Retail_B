@@ -1,0 +1,114 @@
+﻿@using TechRetail_B.Models
+@model TechRetail_B.Models.InventarioEsternoViewModel
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magazzino</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato|Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="Stylesheet" href="~/css/Magazzino/magazzino.css">
+</head>
+<body>
+
+    <button class="toggleNavBtn" onclick="toggleNavbar()">
+        <span id="navIcon">☰</span>
+    </button>
+    <div class="Navbar" id="Navbar">
+        <div class="navButtons">
+            <a href="~/Dashboard/IndexDashBoard/@Model.UtenteLoggato.Id">Dashboard</a>
+            <a href="~/Filiali/Index/@Model.UtenteLoggato.Id">Negozi</a>
+            <a href="~/Magazzino/Index/@Model.UtenteLoggato.Id">Magazzino</a>
+            <a href="~/Comunicazioni/Index/@Model.UtenteLoggato.Id">Comunicazioni</a>
+        </div>
+        <a href="~/Login/Logout" class="logout"> Log Out</a>
+    </div>
+
+    <header class="Header">
+        <div class="infoHeader">
+            <img src="~/Immagini/logo.png" alt="Logo Tech Retail SpA" height="200px">
+            <h1 class="utente" style="color: #eb921c; font-size: 50px;">@Model.Filiale.Indirizzo</h1>
+            <!-- <input type="text" id="searchInput" placeholder="Cerca prodotto..." onkeyup="searchProducts()"> -->
+
+            <form method="post" action="@Url.Action("CercaProdottiLinq", "Magazzino")">
+                <input type="hidden" name="Id" value="@Model.UtenteLoggato.Id">
+                <input type="text" name="parola" id="searchInput" placeholder="Cerca prodotto..." onkeyup="searchProducts()">
+                <button type="submit">🔍</button>
+            </form>
+
+
+
+            <!--  <form action="~/Magazzino/CercaProdottiLinq" method="post" onsubmit="return queryfiltro()">
+
+          <!--  <input type="text" id="cercaSimile" placeholder="Cerca" onkeyup="searchProducts()"/>
+
+                  <!--  <input type="submit" value="cerca"/>
+                  <!--  </form> -->
+
+        </div>
+    </header>
+
+    <div class="schermataInventario">
+        <div class="container table-container">
+            <!-- Aggiungi la classe table-container -->
+            <table id="inventoryTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Prezzo (€)</th>
+                        <th>Quantità</th>
+
+                        @if (Model.UtenteLoggato.Ruolo == "admin") // Mostra solo se è Admin
+                        {
+                                <th>Modifica</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var p in Model.Prodotti)
+                    {
+                        string id = p["id"];
+                        string nome = p["nome"];
+                        string prezzo = p["prezzo"];
+                        string quantita = p["quantita"];
+
+                            <tr>
+                                <td><button class="linkTabella" onclick="window.location.href='@Url.Action("Index", "Prodotto", new { idUtente = Model.UtenteLoggato.Id, idProdotto = @id })'">@id</button></td>
+                                <td><button class="linkTabella" onclick="window.location.href='@Url.Action("Index", "Prodotto", new { idUtente = Model.UtenteLoggato.Id, idProdotto = @id })'">@nome</button></td>
+                                <td><button class="linkTabella" onclick="window.location.href='@Url.Action("Index", "Prodotto", new { idUtente = Model.UtenteLoggato.Id, idProdotto = @id })'">@prezzo</button></td>
+                                <td><button class="linkTabella" onclick="window.location.href='@Url.Action("Index", "Restock", new { idUtente = Model.UtenteLoggato.Id, idProdotto = @id, idFiliale= Model.Filiale.Id, nome=nome, prezzo=@prezzo })'">@quantita</button></td>
+
+
+                            @if (Model.UtenteLoggato.Ruolo == "admin") // Mostra solo se è Admin
+                            {
+                                        <td>
+                                            <form method="get" action="@Url.Action("ModificaQuantita", "Magazzino")">
+                                                <input type="hidden" name="idProdotto" value="@id" />
+                                                <input type="hidden" name="idFiliale" value="@Model.UtenteLoggato._Filiale.Id" />
+                                                <button type="submit" class="modifica-btn">✏️ Modifica</button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form method="post" action="@Url.Action("EliminaStock", "Magazzino")" onsubmit="return confirm('Sei sicuro di voler eliminare questo prodotto?');">
+                                                <input type="hidden" name="idProdotto" value="@id" />
+                                                <input type="hidden" name="idFiliale" value="@Model.UtenteLoggato._Filiale.Id" />
+                                                <button type="submit" class="elimina-btn">🗑️ Elimina</button>
+                                            </form>
+                                        </td>
+                            }
+                            </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+
+    <script src="~/js/Magazzino/Magazzino.js"></script>
+</body>
+</html>

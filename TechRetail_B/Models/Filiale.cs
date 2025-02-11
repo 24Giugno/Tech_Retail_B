@@ -8,7 +8,7 @@ namespace TechRetail_B.Models
         public string Indirizzo { get; set; }
         public string Email { get; set; }
         public string Telefono { get; set; }
-        public bool DisponibileAlRitiro { get; set; }
+        public bool DisponibileAllaConsegna { get; set; }
 
         public Filiale() { }
     }

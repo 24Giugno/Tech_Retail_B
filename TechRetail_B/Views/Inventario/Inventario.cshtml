@@ -70,7 +70,7 @@
                                 <td><button class="linkTabella" onclick="window.location.href='@Url.Action("Index", "Prodotto", new { idUtente = Model.UtenteLoggato.Id, idProdotto = @id })'">@nome</button></td>
                                 <td><button class="linkTabella" onclick="window.location.href='@Url.Action("Index", "Prodotto", new { idUtente = Model.UtenteLoggato.Id, idProdotto = @id })'">@prezzo</button></td>
                             <!--Queste tre portano alla scheda prodotto-->
-                            <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">@quantita</button></td>
+                            <td><button class="linkTabella" onclick="window.location.href='/Filiali/Index/@Model.UtenteLoggato.Id'">@quantita</button></td>
                             <!--Questo porta al form Restock-->
                         </tr>
                     }

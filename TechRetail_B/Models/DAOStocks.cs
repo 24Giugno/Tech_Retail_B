@@ -159,6 +159,11 @@ namespace TechRetail_B.Models
         }
 
         #endregion
+    public bool DiminuisciQuantità(int quantita, int idProdotto, int idFiliale)
+    {
+        return db.UpdateDb($"UPDATE stocks set quantita = quantita - {quantita} WHERE idFilialeFK = {idFiliale} AND idProdottoFK = {idProdotto};");
     }
+    }
+
 }
 

@@ -30,7 +30,7 @@
         <p>@u._Utente._Filiale.Indirizzo</p>
         <p>@u._Utente._Filiale.Email</p>
         <p>@u._Utente._Filiale.Telefono</p>
-        <p>@(u._Utente._Filiale.DisponibileAlRitiro? "si":"no")</p>
+        <p>@(u._Utente._Filiale.DisponibileAllaConsegna? "si":"no")</p>
 
         <h2>prodotto</h2>
         <p>@u._Prodotto.Id </p>
@@ -43,14 +43,14 @@
         <p>@u._FilialePartenza.Indirizzo</p>
         <p>@u._FilialePartenza.Email</p>
         <p>@u._FilialePartenza.Telefono</p>
-        <p> @(u._FilialePartenza.DisponibileAlRitiro? "si" : "no") </p>
+            <p> @(u._FilialePartenza.DisponibileAllaConsegna? "si" : "no") </p>
 
         <h2>Filiale Arrivo</h2>
         <p> @(u._FilialeArrivo.Magazzino ? "si" : "no") </p>
         <p>@u._FilialeArrivo.Indirizzo</p>
         <p>@u._FilialeArrivo.Email</p>
         <p>@u._FilialeArrivo.Telefono</p>
-        <p> @(u._FilialeArrivo.DisponibileAlRitiro ? "si" : "no") </p>
+        <p> @(u._FilialeArrivo.DisponibileAllaConsegna ? "si" : "no") </p>
 
 
     }

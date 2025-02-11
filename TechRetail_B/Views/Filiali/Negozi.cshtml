@@ -56,15 +56,31 @@
                 </thead>
                 <tbody> <!--filiali (magazzino, indirizzo, email, telefono, disponibileAlRitiro)-->
                         @foreach (TechRetail_B.Models.Filiale f in Model.Filiali){
-                    <tr>
-                        <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">@f.Id</button></td>
-                            <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">@((f.Magazzino) ? "Sì" : "No")</button></td>
-                        <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">@f.Indirizzo</button></td>
-                        <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">@f.Email</button></td>
-                        <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">@f.Telefono</button></td>
-                            <td><button class="linkTabella" onclick="window.location.href='/Dashboard/index.html'">@((f.DisponibileAlRitiro) ? "Sì" : "No")</button></td>
-                    </tr>
-                        }
+                            string rowClass = (f.Magazzino || f.DisponibileAllaConsegna) ? "highlight-row" : "";
+
+                        if (!f.Magazzino && !f.DisponibileAllaConsegna)
+                            {
+                                <tr class="@rowClass">
+                                    <td><button class="linkTabella" onclick="alert('Questa filiale non può effettuare ordini di restock!')">@f.Id</button></td>
+                                    <td><button class="linkTabella" onclick="alert('Questa filiale non può effettuare ordini di restock!')">@((f.Magazzino) ? "Sì" : "No")</button></td>
+                                    <td><button class="linkTabella" onclick="alert('Questa filiale non può effettuare ordini di restock!')">@f.Indirizzo</button></td>
+                                    <td><button class="linkTabella" onclick="alert('Questa filiale non può effettuare ordini di restock!')">@f.Email</button></td>
+                                    <td><button class="linkTabella" onclick="alert('Questa filiale non può effettuare ordini di restock!')">@f.Telefono</button></td>
+                                    <td><button class="linkTabella" onclick="alert('Questa filiale non può effettuare ordini di restock!')">@((f.DisponibileAllaConsegna) ? "Sì" : "No")</button></td>
+                                </tr>
+                            }
+                        else
+                            {
+                                <tr class="@rowClass">
+                                    <td><button class="linkTabella" onclick="window.location.href='@Url.Action("InventarioAltraFiliale", "Inventario", new { idUtente = Model.UtenteLoggato.Id, idFiliale = @f.Id })'">@f.Id</button></td>
+                                    <td><button class="linkTabella" onclick="window.location.href='@Url.Action("InventarioAltraFiliale", "Inventario", new { idUtente = Model.UtenteLoggato.Id, idFiliale = @f.Id })'">@((f.Magazzino) ? "Sì" : "No")</button></td>
+                                    <td><button class="linkTabella" onclick="window.location.href='@Url.Action("InventarioAltraFiliale", "Inventario", new { idUtente = Model.UtenteLoggato.Id, idFiliale = @f.Id })'">@f.Indirizzo</button></td>
+                                    <td><button class="linkTabella" onclick="window.location.href='@Url.Action("InventarioAltraFiliale", "Inventario", new { idUtente = Model.UtenteLoggato.Id, idFiliale = @f.Id })'">@f.Email</button></td>
+                                    <td><button class="linkTabella" onclick="window.location.href='@Url.Action("InventarioAltraFiliale", "Inventario", new { idUtente = Model.UtenteLoggato.Id, idFiliale = @f.Id })'">@f.Telefono</button></td>
+                                    <td><button class="linkTabella" onclick="window.location.href='@Url.Action("InventarioAltraFiliale", "Inventario", new { idUtente = Model.UtenteLoggato.Id, idFiliale = @f.Id })'">@((f.DisponibileAllaConsegna) ? "Sì" : "No")</button></td>
+                                </tr>
+                            }
+                    }
                 </tbody>
             </table>
         </div>

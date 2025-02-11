@@ -50,6 +50,26 @@ namespace TechRetail_B.Controllers
             return View("Inventario", viewModel); // Ritorniamo la pagina con i nuovi dati
         }
 
+        public IActionResult InventarioAltraFiliale(int idUtente, int idFiliale)
+        {
+            Entity e = DAOUtenti.GetInstance().FindRecord(idUtente);
+            Utente i = (Utente)e;
+
+            Entity g = DAOFiliali.GetInstance().FindRecord(idFiliale);
+            Filiale f = (Filiale)g;
+
+            var inventario = DAOProdotti.GetInstance().ListaInventario(idFiliale);
+
+            var viewModel = new InventarioEsternoViewModel
+            {
+                Filiale = f,
+                UtenteLoggato = i,
+                Prodotti = inventario
+            };
+
+            return View("InventarioEsterno", viewModel);
+
+        }
 
 
 

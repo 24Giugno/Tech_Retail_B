@@ -50,11 +50,11 @@ namespace TechRetail_B.Models
                {"@Indirizzo",((Filiale)entity).Indirizzo.Replace("'", "''")},
                {"@Email",((Filiale)entity).Email.Replace("'", "''")},
                {"@Telefono",((Filiale)entity).Telefono.Replace("'", "''")},
-               {"@DisponibileAlRitiro",((Filiale)entity).DisponibileAlRitiro}
+               {"@DisponibileAlRitiro",((Filiale)entity).DisponibileAllaConsegna}
            };
-            const string query = "INSERT INTO filiali (Magazzino,Indirizzo,Email,Telefono,DisponibileAlRitiro) " +
+            const string query = "INSERT INTO filiali (Magazzino,Indirizzo,Email,Telefono,DisponibileAllaConsegna) " +
                                  "VALUES " +
-                                 "(@Magazzino,@Indirizzo,@Email,@Telefono,@DisponibileAlRitiro)";
+                                 "(@Magazzino,@Indirizzo,@Email,@Telefono,@DisponibileAllaConsegna)";
 
             return db.UpdateDb(query, parametri);
         }
@@ -67,14 +67,14 @@ namespace TechRetail_B.Models
                {"@Indirizzo",((Filiale)entity).Indirizzo.Replace("'", "''")},
                {"@Email",((Filiale)entity).Email.Replace("'", "''")},
                {"@Telefono",((Filiale)entity).Telefono.Replace("'", "''")},
-               {"@DisponibileAlRitiro",((Filiale)entity).DisponibileAlRitiro}
+               {"@DisponibileAlRitiro",((Filiale)entity).DisponibileAllaConsegna}
            };
             const string query = $"UPDATE filiali SET " +
                                 $"magazzino= @Magazzino, " +
                                 $"indirizzo= @Indirizzo, " +
                                 $"email= @Email, " +
                                 $"telefono= @Telefono, " +
-                                $"disponibileAlRitiro= @DisponibileAlRitiro " +
+                                $"disponibileAlRitiro= @DisponibileAllaConsegna " +
                                 $"WHERE id=@Id";
 
             return db.UpdateDb(query, parametri);
