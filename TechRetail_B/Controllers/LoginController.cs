@@ -38,8 +38,12 @@ namespace TechRetail_B.Controllers
 
                 _utenteLoggato = (Utente)e;
                 _logger.LogInformation($"Utente Loggato {_utenteLoggato.Mail} alle ore {DateTime.Now}");
-                
-                
+
+                if (_utenteLoggato.Ruolo == "cliente")
+                {
+                    TempData["ClientAlert"] = "Questa sezione è riservata allo staff.";
+                    return RedirectToAction("Index");
+                }
                 // Passo l'oggetto alla pagine HTML
                 return RedirectToAction("IndexLogin","DashBoard",((Utente)e));
               
@@ -48,7 +52,7 @@ namespace TechRetail_B.Controllers
             {
                 // Se la combo non esiste significa che le credenziali sono sbagliate e rimandiamo alla pagina Index dove fare 
                 // di nuovo Login.
-                
+
                 return RedirectToAction("Index");
             }
         }

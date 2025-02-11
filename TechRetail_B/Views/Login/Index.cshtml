@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var clientAlert = TempData["ClientAlert"];
+}
+
+<!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
@@ -10,31 +14,36 @@
 </head>
 <body>
 
-
+    @if (clientAlert != null)
+    {
+        <script type="text/javascript">
+            alert('@clientAlert');
+        </script>
+    }
 
 <!-- Header -->
 <header class="Header">
     <div class="infoHeader">
         <img src="~/Immagini/logo.png" alt="Logo Tech Retail SpA" height="200px">
-
     </div>
 </header>
+
 <!-- Login Form -->
- <div style="display: flex;justify-content: center;">
-<div class="form-container">
+<div style="display: flex; justify-content: center;">
+    <div class="form-container">
+        <h2>Login</h2>
+        <form action="/Login/Accesso" method="post" onsubmit="return valida()">
+            <label for="username">Inserisci indirizzo Mail</label>
+            <input type="text" id="Mail" name="Mail" required>
 
-    <h2>Login</h2>
-    <form action="/Login/Accesso" method="post" onsubmit="return valida() "> <!--da fare valida-->
-        <label for="username">Inserisci indirizzo Mail</label>
-        <input type="text" id="Mail" name="Mail" required>
+            <label for="password">Password</label>
+            <input type="password" id="Passw" name="Passw" required>
 
-        <label for="password">Password</label>
-        <input type="password" id="Passw" name="Passw" required>
-
-        <button type="submit">Accedi</button>
-    </form>
+            <button type="submit">Accedi</button>
+        </form>
+    </div>
 </div>
- </div>
+
 <script src="~/js/Login/Index.js"></script>
 </body>
 </html>
