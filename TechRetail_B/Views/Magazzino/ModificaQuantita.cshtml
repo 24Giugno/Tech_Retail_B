@@ -22,26 +22,25 @@
     </header>
 
 <div class="contenitore">
-
     <form method="post" action="@Url.Action("SalvaQuantita", "Magazzino")" class="quantita-form">
-    <input type="hidden" name="idProdotto" value="@Model.IdProdotto" />
-    <input type="hidden" name="idMagazzino" value="1" />
-    <input type="hidden" name="idFiliale" value="@Model.IdFiliale" />
+        <input type="hidden" name="idProdotto" value="@Model.IdProdotto" />
+        <input type="hidden" name="idMagazzino" value="1" />
+        <input type="hidden" name="idFiliale" value="@Model.IdFiliale" />
 
-    <div class="quantita-container">
-        <label for="quantitaSlider">Quantità:</label>
-        <input type="range" id="quantitaSlider" name="quantita" min="0" max="1000" value="@Model.QuantitaAttuale" oninput="updateQuantitaValue(this.value)">
-        <span id="quantitaValue">@Model.QuantitaAttuale</span>
-    </div>
+        <div class="quantita-container">
+            <label for="quantitaSlider">Quantità:</label>
+            <input type="range" id="quantitaSlider" name="quantita" min="0" max="1000" value="@Model.QuantitaAttuale" oninput="syncValues(this.value)">
+            <input type="number" id="quantitaInput" min="0" max="1000" value="@Model.QuantitaAttuale" oninput="syncValues(this.value)">
+        </div>
 
-    <button type="submit" class="btn-salva">Salva</button>
-</form>
+        <button type="submit" class="btn-salva">Salva</button>
+    </form>
 </div>
 
 <script>
-// Funzione per aggiornare il valore accanto allo slider in tempo reale
-function updateQuantitaValue(value) {
-    document.getElementById("quantitaValue").textContent = value;
+function syncValues(value) {
+    document.getElementById("quantitaSlider").value = value;
+    document.getElementById("quantitaInput").value = value;
 }
 </script>
 </body>

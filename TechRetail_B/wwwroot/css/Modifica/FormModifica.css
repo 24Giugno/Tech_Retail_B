@@ -221,13 +221,13 @@ html, body {
     }
 
 
-    .contenitore{
-        margin-top:100px;
-        display: flex;
-        justify-content:center;
-        align-items: center;
-        width:100%; 
-    }
+.contenitore {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
 
 .quantita-form {
     display: flex;
@@ -243,19 +243,18 @@ html, body {
     font-family: "Montserrat", sans-serif;
 }
 
-/* Stile per il contenitore dello slider */
 .quantita-container {
     display: flex;
-    flex-direction: column;
     align-items: center;
     width: 100%;
+    gap: 10px;
     margin-bottom: 15px;
 }
 
 /* Stile per lo slider */
 input[type="range"] {
     -webkit-appearance: none;
-    width: 100%;
+    width: 60%;
     height: 8px;
     border-radius: 4px;
     background: linear-gradient(90deg, #4CAF50 0%, #FF9800 50%, #F44336 100%);
@@ -264,44 +263,14 @@ input[type="range"] {
     cursor: pointer;
 }
 
-    /* Stile per il cursore dello slider */
-    input[type="range"]::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 20px;
-        height: 20px;
-        background: white;
-        border: 2px solid #4CAF50;
-        border-radius: 50%;
-        cursor: pointer;
-        transition: transform 0.2s;
-    }
-
-    input[type="range"]::-moz-range-thumb {
-        width: 20px;
-        height: 20px;
-        background: white;
-        border: 2px solid #4CAF50;
-        border-radius: 50%;
-        cursor: pointer;
-        transition: transform 0.2s;
-    }
-
-    /* Effetto quando si passa sopra al cursore */
-    input[type="range"]:hover::-webkit-slider-thumb {
-        transform: scale(1.2);
-    }
-
-    input[type="range"]:hover::-moz-range-thumb {
-        transform: scale(1.2);
-    }
-
-/* Stile per il valore della quantità */
-#quantitaValue {
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 10px;
-    color: #4CAF50;
+/* Stile per il numero */
+input[type="number"] {
+    width: 80px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    text-align: center;
 }
 
 /* Stile per il pulsante */
