@@ -60,9 +60,9 @@ namespace TechRetail_B.Controllers
         }
 
         [HttpPost]
-        public IActionResult SalvaQuantita(int idProdotto, int idFiliale, int quantita)
+        public IActionResult SalvaQuantita(int idProdotto, int idMagazzino, int idFiliale, int quantita)
         {
-            var stock = DAOStocks.GetInstance().FindStock(idProdotto, idFiliale);
+            var stock = DAOStocks.GetInstance().FindStock(idProdotto, idMagazzino);
             if (stock == null)
             {
                 return NotFound("Stock non trovato.");

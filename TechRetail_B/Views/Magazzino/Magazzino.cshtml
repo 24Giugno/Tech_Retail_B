@@ -80,7 +80,7 @@
                             <td><button class="linkTabella" onclick="window.location.href='@Url.Action("Index", "Prodotto", new { idUtente = Model.UtenteLoggato.Id, idProdotto = @id })'">@id</button></td>
                             <td><button class="linkTabella" onclick="window.location.href='@Url.Action("Index", "Prodotto", new { idUtente = Model.UtenteLoggato.Id, idProdotto = @id })'">@nome</button></td>
                             <td><button class="linkTabella" onclick="window.location.href='@Url.Action("Index", "Prodotto", new { idUtente = Model.UtenteLoggato.Id, idProdotto = @id })'">@prezzo</button></td>
-                            <td><button class="linkTabella" onclick="window.location.href='@Url.Action("Index", "Restock", new { idUtente = Model.UtenteLoggato.Id, idProdotto = @id, nome=nome, prezzo=@prezzo })'">@quantita</button></td>
+                            <td><button class="linkTabella" onclick="window.location.href='@Url.Action("Index", "Restock", new { idUtente = Model.UtenteLoggato.Id, idProdotto = @id, nome=nome, prezzo=@prezzo, idFiliale = 1 })'">@quantita</button></td>
 
 
                             @if (Model.UtenteLoggato.Ruolo == "admin") // Mostra solo se è Admin

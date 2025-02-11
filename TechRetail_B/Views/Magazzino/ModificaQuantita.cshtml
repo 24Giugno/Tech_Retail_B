@@ -11,6 +11,7 @@
 
     <form method="post" action="@Url.Action("SalvaQuantita", "Magazzino")">
         <input type="hidden" name="idProdotto" value="@Model.IdProdotto" />
+        <input type="hidden" name="idMagazzino" value= "1" />
         <input type="hidden" name="idFiliale" value="@Model.IdFiliale" />
 
         <div>

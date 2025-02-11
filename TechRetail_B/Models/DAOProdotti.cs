@@ -126,7 +126,7 @@ namespace TechRetail_B.Models
         {
             string query = "SELECT prodotti.id as Id, Nome, prezzo, quantita " +
                            "FROM Prodotti JOIN stocks " +
-                           "ON Prodotti.id = Stocks.idProdottoFK" +
+                           "ON Prodotti.id = Stocks.idProdottoFK " +
                            "WHERE Stocks.idFilialeFK=1;";
 
             return db.ReadDb(query);
