@@ -1,26 +1,48 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form di Restock</title>
+    <link rel="stylesheet" href="~/css/Modifica/FormModifica.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato|Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     @model TechRetail_B.Models.ModificaQuantitaViewModel
 
-    <h2>Modifica Quantità</h2>
-
-    <form method="post" action="@Url.Action("SalvaQuantita", "Magazzino")">
-        <input type="hidden" name="idProdotto" value="@Model.IdProdotto" />
-        <input type="hidden" name="idMagazzino" value= "1" />
-        <input type="hidden" name="idFiliale" value="@Model.IdFiliale" />
-
-        <div>
-            <label>Quantità:</label>
-            <input type="number" name="quantita" value="@Model.QuantitaAttuale" min="0" required />
+    <!-- Header -->
+    <header class="Header">
+        <div class="infoHeader">
+            <img src="~/Immagini/logo.png" alt="Logo Tech Retail SpA" height="200px">
+            <h1 class="utente" style="color: #eb921c; font-size: 25px;">Form di Modifica Per Administrators</h1>
         </div>
+    </header>
 
-        <button type="submit">Salva</button>
-    </form>
+<div class="contenitore">
 
+    <form method="post" action="@Url.Action("SalvaQuantita", "Magazzino")" class="quantita-form">
+    <input type="hidden" name="idProdotto" value="@Model.IdProdotto" />
+    <input type="hidden" name="idMagazzino" value="1" />
+    <input type="hidden" name="idFiliale" value="@Model.IdFiliale" />
+
+    <div class="quantita-container">
+        <label for="quantitaSlider">Quantità:</label>
+        <input type="range" id="quantitaSlider" name="quantita" min="0" max="1000" value="@Model.QuantitaAttuale" oninput="updateQuantitaValue(this.value)">
+        <span id="quantitaValue">@Model.QuantitaAttuale</span>
+    </div>
+
+    <button type="submit" class="btn-salva">Salva</button>
+</form>
+</div>
+
+<script>
+// Funzione per aggiornare il valore accanto allo slider in tempo reale
+function updateQuantitaValue(value) {
+    document.getElementById("quantitaValue").textContent = value;
+}
+</script>
 </body>
 </html>

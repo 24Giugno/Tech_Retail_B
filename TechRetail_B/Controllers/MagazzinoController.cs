@@ -41,9 +41,9 @@ namespace TechRetail_B.Controllers
 
             return View("Magazzino", viewModel);
         }
-        public IActionResult ModificaQuantita(int idProdotto, int idFiliale)
+        public IActionResult ModificaQuantita(int idProdotto, int idFiliale, int idMagazzino)
         {
-            var stock = DAOStocks.GetInstance().FindStock(idProdotto, idFiliale);
+            var stock = DAOStocks.GetInstance().FindStock(idProdotto, idMagazzino);
             if (stock == null)
             {
                 return NotFound("Stock non trovato.");
@@ -75,9 +75,9 @@ namespace TechRetail_B.Controllers
         }
 
         [HttpPost]
-        public IActionResult EliminaStock(int idProdotto, int idFiliale) 
+        public IActionResult EliminaStock(int idProdotto, int idFiliale, int idMagazzino) 
         {
-            var stock = DAOStocks.GetInstance().FindStock(idProdotto, idFiliale);
+            var stock = DAOStocks.GetInstance().FindStock(idProdotto, idMagazzino);
             if (stock == null)
             {
                 return NotFound("Stock non trovato.");

@@ -88,6 +88,7 @@
                                 <td>
                                     <form method="get" action="@Url.Action("ModificaQuantita", "Magazzino")">
                                         <input type="hidden" name="idProdotto" value="@id" />
+                                        <input type="hidden" name="idMagazzino" value="1" />
                                         <input type="hidden" name="idFiliale" value="@Model.UtenteLoggato._Filiale.Id" />
                                         <button type="submit" class="modifica-btn">✏️ Modifica</button>
                                     </form>
@@ -95,6 +96,7 @@
                                 <td>
                                     <form method="post" action="@Url.Action("EliminaStock", "Magazzino")" onsubmit="return confirm('Sei sicuro di voler eliminare questo prodotto?');">
                                         <input type="hidden" name="idProdotto" value="@id" />
+                                        <input type="hidden" name="idMagazzino" value="1" />
                                         <input type="hidden" name="idFiliale" value="@Model.UtenteLoggato._Filiale.Id" />
                                         <button type="submit" class="elimina-btn">🗑️ Elimina</button>
                                     </form>

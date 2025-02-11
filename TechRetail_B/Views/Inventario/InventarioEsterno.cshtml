@@ -61,11 +61,6 @@
                         <th>Nome</th>
                         <th>Prezzo (€)</th>
                         <th>Quantità</th>
-
-                        @if (Model.UtenteLoggato.Ruolo == "admin") // Mostra solo se è Admin
-                        {
-                                <th>Modifica</th>
-                        }
                     </tr>
                 </thead>
                 <tbody>
@@ -82,24 +77,6 @@
                                 <td><button class="linkTabella" onclick="window.location.href='@Url.Action("Index", "Prodotto", new { idUtente = Model.UtenteLoggato.Id, idProdotto = @id })'">@prezzo</button></td>
                                 <td><button class="linkTabella" onclick="window.location.href='@Url.Action("Index", "Restock", new { idUtente = Model.UtenteLoggato.Id, idProdotto = @id, idFiliale= Model.Filiale.Id, nome=nome, prezzo=@prezzo })'">@quantita</button></td>
 
-
-                            @if (Model.UtenteLoggato.Ruolo == "admin") // Mostra solo se è Admin
-                            {
-                                        <td>
-                                            <form method="get" action="@Url.Action("ModificaQuantita", "Magazzino")">
-                                                <input type="hidden" name="idProdotto" value="@id" />
-                                                <input type="hidden" name="idFiliale" value="@Model.UtenteLoggato._Filiale.Id" />
-                                                <button type="submit" class="modifica-btn">✏️ Modifica</button>
-                                            </form>
-                                        </td>
-                                        <td>
-                                            <form method="post" action="@Url.Action("EliminaStock", "Magazzino")" onsubmit="return confirm('Sei sicuro di voler eliminare questo prodotto?');">
-                                                <input type="hidden" name="idProdotto" value="@id" />
-                                                <input type="hidden" name="idFiliale" value="@Model.UtenteLoggato._Filiale.Id" />
-                                                <button type="submit" class="elimina-btn">🗑️ Elimina</button>
-                                            </form>
-                                        </td>
-                            }
                             </tr>
                     }
                 </tbody>
