@@ -136,7 +136,7 @@ namespace TechRetail_B.Models
         {
             string query = "SELECT feedbacks.id, stelle, commento, feedbacks.stato, idOrdineFK, feedbacks.idUtenteFK " +
                                     "FROM Feedbacks LEFT JOIN Ordini ON Feedbacks.idOrdineFK = Ordini.id " +
-                                    $"where idFilialePartenzaFK = {idFiliale};";
+                                    $"where idFilialePartenzaFK = {idFiliale} AND feedbacks.stato = 'revisione';";
             List<Entity> entities = [];
             var ris = db.ReadDb(query);
             if (ris == null)

@@ -200,3 +200,82 @@ html, body {
     display: block;
     margin: 20px auto; /* Centra orizzontalmente */
 }
+
+/* Stile per il contenitore principale */
+.contenuto {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centra verticalmente */
+    flex-wrap: wrap; /* Aggiunto per permettere il wrapping in caso di schermi piccoli */
+    transition: margin-right 0.3s ease-in-out;
+}
+
+/* Stile per la scheda prodotto */
+.schedaProdotto {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Fai sì che la scheda occupi tutta la larghezza disponibile */
+    max-width: 800px; /* Imposta una larghezza massima per evitare che diventi troppo larga */
+    justify-content: center;
+    align-items: center;
+    background-color: #3b3b3b;
+    padding: 20px; /* Spaziatura interna per evitare che gli elementi tocchino i bordi */
+    font-size: 20px; /* Ridotto per una visualizzazione migliore */
+    font-family: "Montserrat", sans-serif;
+    color: white; /* Colore del testo bianco per contrastare il background scuro */
+    border-radius: 8px; /* Aggiunta di angoli arrotondati per un aspetto più elegante */
+}
+
+/* Stile per il titolo */
+.titolo {
+    border-bottom: solid 2px white;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    font-size: 24px; /* Aumentato per renderlo più visibile */
+}
+
+/* Stile per la foto */
+.foto {
+    max-width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    border: solid 2px white;
+    width: 100%;
+    height: auto; /* Imposta l'altezza in automatico per evitare distorsioni */
+    border-radius: 8px;
+}
+
+.immagine {
+    width: 100%; /* Rende l'immagine responsiva */
+    max-width: 600px; /* Impone una larghezza massima per non espandere troppo */
+    height: auto; /* Mantiene le proporzioni originali dell'immagine */
+}
+
+/* Stile per la descrizione */
+.descrizione {
+    margin-top: 30px;
+    padding: 15px;
+    border: solid 2px white;
+    width: 100%;
+    height: auto; /* Adatta l'altezza al contenuto */
+    font-size: 18px; /* Ridotto leggermente per leggibilità */
+    text-align: center; /* Giustifica il testo per una presentazione ordinata */
+}
+
+/* Stile per il prezzo */
+.prezzo {
+    margin-top: 30px;
+    padding: 10px;
+    border: solid 2px white;
+    width: 100%;
+    font-size: 20px; /* Aumentato per evidenziare il prezzo */
+    text-align: center; /* Centra il testo */
+}
+
+
+
+

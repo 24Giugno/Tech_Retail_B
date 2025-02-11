@@ -41,7 +41,7 @@ namespace TechRetail_B.Controllers
 
                 if (_utenteLoggato.Ruolo == "cliente")
                 {
-                    TempData["ClientAlert"] = "Questa sezione è riservata allo staff.";
+                    TempData["ClientAlert"] = "Area riservata allo staff.";
                     return RedirectToAction("Index");
                 }
                 // Passo l'oggetto alla pagine HTML
