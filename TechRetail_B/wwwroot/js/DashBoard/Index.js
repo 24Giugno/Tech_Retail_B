@@ -1,15 +1,15 @@
 
-document.querySelectorAll('.stars').forEach(starsContainer => {
-    const rating = parseInt(starsContainer.getAttribute('data-rating'));
-    for (let i = 1; i <= 5; i++) {
-        const star = document.createElement('span');
-        star.classList.add('fa', 'fa-star');
-        if (i <= rating) {
-            star.classList.add('checked');
-        }
-        starsContainer.appendChild(star);
-    }
-});
+//document.querySelectorAll('.stars').forEach(starsContainer => {
+//    const rating = parseInt(starsContainer.getAttribute('data-rating'));
+//    for (let i = 1; i <= 5; i++) {
+//        const star = document.createElement('span');
+//        star.classList.add('fa', 'fa-star');
+//        if (i <= rating) {
+//            star.classList.add('checked');
+//        }
+//        starsContainer.appendChild(star);
+//    }
+//});
 
 function acceptFeedback(Id) {
     alert("Feedback(id: " + Id + ") accettato e inviato alla pagina e-Commerce!");

@@ -1,4 +1,5 @@
-﻿using MSSTU.DB.Utility;
+﻿using Microsoft.AspNetCore.Routing.Constraints;
+using MSSTU.DB.Utility;
 
 namespace TechRetail_B.Models
 {
@@ -65,8 +66,19 @@ namespace TechRetail_B.Models
             if (ris == null)
                 return null;
 
-            Entity f = new Feedback();
+            Feedback f = new Feedback();
             f.TypeSort(ris);
+
+            if (ris.ContainsKey("idordinefk") && int.TryParse(ris["idordinefk"], out int OrdineId))
+            {
+                Entity Ordine = DAOOrdini.GetInstance().FindRecord(OrdineId);
+                f._Ordine = (Ordine)Ordine;
+            }
+            if (ris.ContainsKey("idutentefk") && int.TryParse(ris["idutentefk"], out int UtenteId))
+            {
+                Entity Utente = DAOUtenti.GetInstance().FindRecord(UtenteId);
+                f._Utente = (Utente)Utente;
+            }
 
             return f;
         }
@@ -109,7 +121,7 @@ namespace TechRetail_B.Models
                {"@Commento",((Feedback)entity).Commento.Replace("'","''")},
                {"@Stato",((Feedback)entity).Stato.Replace("'","''")},
                {"@idOrdineFK",((Feedback)entity)._Ordine.Id},
-               {"@idUtenteFK",((Feedback)entity)._Ordine.Id},
+               {"@idUtenteFK",((Feedback)entity)._Utente.Id},
            };
 
             const string query = "UPDATE Feedbacks SET " +
@@ -120,17 +132,55 @@ namespace TechRetail_B.Models
         #endregion
 
         #region METODI
-        public List<Entity> FeedbacksPerFiliale(Utente u)
+        public List<Entity> FeedbacksPerFiliale(int idFiliale)
         {
-          List<Entity> lista = DAOFeedbacks.GetInstance().GetRecords();
-          
-            IEnumerable<Entity> query = from Feedback f in lista
-                                        where f._Ordine._FilialePartenza.Id == u._Filiale.Id
-                                        select f;
-            return query.ToList();
+            string query = "SELECT feedbacks.id, stelle, commento, feedbacks.stato, idOrdineFK, feedbacks.idUtenteFK " +
+                                    "FROM Feedbacks LEFT JOIN Ordini ON Feedbacks.idOrdineFK = Ordini.id " +
+                                    $"where idFilialePartenzaFK = {idFiliale};";
+            List<Entity> entities = [];
+            var ris = db.ReadDb(query);
+            if (ris == null)
+                return entities;
+
+            foreach (var r in ris)
+            {
+                Feedback f = new Feedback();
+                f.TypeSort(r);
+
+                if (r.ContainsKey("idordinefk") && int.TryParse(r["idordinefk"], out int OrdineId))
+                {
+                    Entity Ordine = DAOOrdini.GetInstance().FindRecord(OrdineId);
+                    f._Ordine = (Ordine)Ordine;
+                }
+                if (r.ContainsKey("idutentefk") && int.TryParse(r["idutentefk"], out int UtenteId))
+                {
+                    Entity Utente = DAOUtenti.GetInstance().FindRecord(UtenteId);
+                    f._Utente = (Utente)Utente;
+                }
+
+                entities.Add(f);
+            }
+            return entities;
+
         }
 
-        
+        public bool FeedbackAccettato(int idFeedback)
+        {
+            Entity e = DAOFeedbacks.GetInstance().FindRecord(idFeedback);
+            Feedback f = (Feedback)e;
+            f.Stato = "accettato";
+            return DAOFeedbacks.GetInstance().UpdateRecord(f);
+        }
+
+        public bool FeedbackRifiutato(int idFeedback)
+        {
+            Entity e = DAOFeedbacks.GetInstance().FindRecord(idFeedback);
+            Feedback f = (Feedback)e;
+            f.Stato = "rifiutato";
+            return DAOFeedbacks.GetInstance().UpdateRecord(f);
+        }
+
+
         #endregion
 
     }

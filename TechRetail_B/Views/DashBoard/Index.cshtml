@@ -123,35 +123,15 @@
                     <div class="stars" data-rating="@f.Stelle"></div>
                 </div>
                 <div class="adButtons">
-                        <button class="acceptBtn" onclick="acceptFeedback(@f.Id)"><i class="fa fa-check"></i></button>
-                        <button class="rejectBtn" onclick="rejectFeedback(@f.Id)"><i class="fa fa-times"></i></button>
+                            <button class="acceptBtn" onclick="acceptFeedback(@f.Id);window.location.href='@Url.Action("FeedbackAccettato", "DashBoard", new { idUtente = Model.UtenteLoggato.Id, idFeedback=f.Id })'"><i class="fa fa-check"></i></button>
+                            <button class="rejectBtn" onclick="rejectFeedback(@f.Id);window.location.href='@Url.Action("FeedbackRifiutato", "DashBoard", new { idUtente = Model.UtenteLoggato.Id, idFeedback=f.Id })'"><i class="fa fa-times"></i></button>
                 </div>
             </div>
             }
-            <!--<div class="feedback">
-                <div>
-                    <p>Provaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-                    <div class="stars" data-rating="4"></div>
-                </div>
-                <div class="adButtons">
-                    <button class="acceptBtn" onclick="acceptFeedback()"><i class="fa fa-check"></i></button>
-                    <button class="rejectBtn" onclick="rejectFeedback()"><i class="fa fa-times"></i></button>
-                </div>
-            </div>
-            <div class="feedback">
-                <div>
-                    <p>Bellissimo sito bravi bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla</p>
-                    <div class="stars" data-rating="1"></div>
-                </div>
-                <div class="adButtons">
-                    <button class="acceptBtn" onclick="acceptFeedback()"><i class="fa fa-check"></i></button>
-                    <button class="rejectBtn" onclick="rejectFeedback()"><i class="fa fa-times"></i></button>
-                </div>
-            </div>
-            -->
         </div>
     </div>
 <script>
+
 // Pie Chart
 var ctxPie = document.getElementById('pieChart').getContext('2d');
 
@@ -248,6 +228,29 @@ for (var i = 29; i >= 0; i--) {
             }
         }
     }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("DOM completamente caricato");
+
+    const starsContainers = document.querySelectorAll('.stars');
+    console.log("Numero di elementi '.stars' trovati:", starsContainers.length);
+
+    starsContainers.forEach(starsContainer => {
+        const rating = parseInt(starsContainer.getAttribute('data-rating'), 10);
+        console.log("Rating trovato per elemento:", rating);
+
+        starsContainer.innerHTML = ''; // Rimuove eventuali stelle già presenti
+
+        for (let i = 1; i <= 5; i++) {
+            const star = document.createElement('span');
+            star.classList.add('fa', 'fa-star');
+            if (i <= rating) {
+                star.classList.add('checked');
+            }
+            starsContainer.appendChild(star);
+        }
+    });
 });
 </script>
 </body>
